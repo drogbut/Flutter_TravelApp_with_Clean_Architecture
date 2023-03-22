@@ -76,5 +76,4 @@ If you find a bug or want a feature, but don't know how to fix/implement it, ple
 If you fixed a bug or implemented a new feature, please send a [pull request](...).
 
 ### Thanks
-
-:clap: Thanks to helper person
+1. [Which Flutter Project Structure for your project](https://codewithandrea.com/articles/flutter-project-structure/)
