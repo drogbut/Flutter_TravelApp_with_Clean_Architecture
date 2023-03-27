@@ -8,7 +8,7 @@ import 'package:travel_app/styleguide/tr_colors.dart';
 class TrThemes {
   /// The configuration of the light theme.
   static ThemeData lightTheme = ThemeData(
-    //fontFamily: 'Inter',
+    fontFamily: 'Poppins',
     brightness: Brightness.light,
     primarySwatch: TrColors.createMaterialColor(TrColors.lime),
     primaryColor: TrColors.lime30,
