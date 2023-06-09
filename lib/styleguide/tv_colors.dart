@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// [TrColors] allows to build all colours used in the travel app.
+/// [TvColors] allows to build all colours used in the travel app.
 ///
 /// If you are having a problem with `Color` wherein it seems your color is just
 /// not painting, check to make sure you are specifying the full 8 hexadecimal
@@ -14,8 +14,8 @@ import 'package:flutter/material.dart';
 ///
 /// See also:
 ///   * [Customizing Material](https://m3.material.io/foundations/customization)
-class TrColors {
-  TrColors._();
+class TvColors {
+  TvColors._();
 
   /// GREY SHADES
   static const Color anthracite = Color(0xFF262626);
