@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'my_app.dart';
+import 'package:travel_app/widgets/apps/my_app.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
