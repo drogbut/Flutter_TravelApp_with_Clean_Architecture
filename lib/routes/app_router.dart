@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:travel_app/error_pages/presentation/page_not_found_page.dart';
 import 'package:travel_app/home/presentation/home.dart';
-import 'package:travel_app/router/app_routes.dart';
+import 'package:travel_app/routes/app_routes.dart';
 
 class test extends StatefulWidget {
   const test({Key? key}) : super(key: key);

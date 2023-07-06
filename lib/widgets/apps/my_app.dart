@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:travel_app/router/app_router.dart';
-import 'package:travel_app/styleguide/sd_themes.dart';
+import 'package:travel_app/config/sd_themes.dart';
+import 'package:travel_app/routes/app_router.dart';
 
 /// A Widget for the whole flutter app, including theme.
 class MyApp extends StatelessWidget {

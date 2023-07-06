@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/router/navigation_helper.dart';
+
+import 'navigation_helper.dart';
 
 class DevScreensPage extends StatelessWidget {
   const DevScreensPage({Key? key}) : super(key: key);

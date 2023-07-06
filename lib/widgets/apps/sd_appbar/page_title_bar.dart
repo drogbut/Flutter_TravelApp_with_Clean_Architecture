@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/router/navigation_helper.dart';
+import 'package:travel_app/routes/navigation_helper.dart';
 import 'package:travel_app/styleguide/sd_constants.dart';
 
 /// [PageTitleBar] displays the title and the button for navigating back to the

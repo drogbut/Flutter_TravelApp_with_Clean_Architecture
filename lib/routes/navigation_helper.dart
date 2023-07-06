@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/router/app_routes.dart';
+import 'package:travel_app/routes/app_routes.dart';
 import 'package:travel_app/styleguide/responsive_layout.dart';
 import 'package:travel_app/styleguide/sd_constants.dart';
 import 'package:travel_app/widgets/sd_alert_views/sd_alert_dialog.dart';
