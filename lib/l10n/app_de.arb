@@ -1,3 +1,11 @@
 {
-  "labelSettings": "Einstellungen"
+  "@@locale": "de",
+  "language": "deutsch",
+  "@language": {
+    "description": "Die aktuelle Sprache"
+  },
+  "labelSettings": "Einstellungen",
+  "btnLogin": "Anmelden",
+  "labelChooseLanguage": "Sprache wählen",
+  "btnSave": "Speichern"
 }

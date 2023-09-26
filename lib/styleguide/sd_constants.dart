@@ -1,5 +1,5 @@
 /// To maintain all the global utils like UI-related enums and standard
-/// dimensions of several constants according to webshop 2.0
+/// dimensions of several constants according to the Travel App
 
 enum SdToggleButtonSelection { left, right }
 

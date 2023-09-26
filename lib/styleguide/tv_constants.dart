@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:travel_app/styleguide/tv_colors.dart';
 
 /// [TVConstants] contains the used constants in the app.
 ///
@@ -20,6 +19,9 @@ import 'package:travel_app/styleguide/tv_colors.dart';
 ///  * The Material spec on touch targets at <https://material.io/design/usability/accessibility.html#layout-typography>.
 class TvConstants {
   TvConstants._();
+
+  /// The app name
+  static const String appName = "Travel App";
 
   /// Default zero
   static const double zero = 0.0;
@@ -77,11 +79,11 @@ class TvConstants {
   /// Buttons & Icon-Buttons
   static const double buttonHeightSmall = 24.0;
   static const double buttonHeightMedium = 44.0;
-  static const double buttonHeightLarge = 54.0;
+  static const double buttonHeightLarge = 40.0;
 
   static const double buttonWidthSmall = 8.0;
   static const double buttonWidthMedium = 16.0;
-  static const double buttonWidthLarge = 88.0;
+  static const double buttonWidthLarge = 40.0;
 
   static const double iconSizeSmall = 20.0;
   static const double iconSizeMedium = 24.0;
@@ -117,19 +119,4 @@ class TvConstants {
   /// calender modal height on iOS
   static const double inputFieldWidthFacPortrait = 3.7;
   static const double inputFieldWidthFac = 3.4;
-
-  static BoxShadow boxShadow1 = BoxShadow(
-    color: TvColors.anthracite.withOpacity(0.15),
-    blurRadius: 13,
-    blurStyle: BlurStyle.outer,
-    spreadRadius: -8,
-    offset: const Offset(0, 3),
-  );
-
-  static BoxShadow boxShadow2 = BoxShadow(
-    color: TvColors.anthracite.withOpacity(0.15),
-    blurRadius: 13,
-    spreadRadius: 2,
-    offset: const Offset(0, 3),
-  );
 }

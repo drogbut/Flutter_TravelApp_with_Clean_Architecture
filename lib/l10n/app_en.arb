@@ -1,4 +1,11 @@
 {
   "@@locale": "en",
-  "labelSettings": "Settings"
+  "language": "English",
+  "@language": {
+    "description": "The current language"
+},
+  "labelSettings": "Settings",
+  "btnLogin": "Login",
+  "labelChooseLanguage": "chooseLanguage",
+  "btnSave": "Save"
 }

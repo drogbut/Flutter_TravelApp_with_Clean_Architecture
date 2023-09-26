@@ -1,0 +1,11 @@
+{
+  "@@locale": "fr",
+  "language": "Français",
+  "@language": {
+    "description": "La langue actuelle"
+  },
+  "labelSettings": "Paramètres",
+  "btnLogin": "Connexion",
+  "labelChooseLanguage": "Choisir la langue",
+  "btnSave": "Enregistrer"
+}

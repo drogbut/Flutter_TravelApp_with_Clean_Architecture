@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  dynamic_color
   flutter_localization
   flutter_secure_storage_linux
   sqlite3_flutter_libs

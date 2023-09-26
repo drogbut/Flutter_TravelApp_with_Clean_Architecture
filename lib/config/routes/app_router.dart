@@ -1,30 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/error_pages/presentation/page_not_found_page.dart';
+import 'package:travel_app/config/routes/app_routes.dart';
+import 'package:travel_app/core/error/presentation/pages/page_not_found_page.dart';
 import 'package:travel_app/home/presentation/home.dart';
-import 'package:travel_app/routes/app_routes.dart';
 
-class test extends StatefulWidget {
-  const test({Key? key}) : super(key: key);
-
-  @override
-  State<test> createState() => _testState();
-}
-
-class _testState extends State<test> {
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
+/// The route configuration.
 class AppRouter {
   final router = GoRouter(
     initialLocation: '/home',
+    debugLogDiagnostics: true,
     errorBuilder: (context, state) {
       return const PageNotFoundPage();
     },
     redirect: (context, state) {
+      /// If the location doesn't exist navigate to home page
       if (state.location == '') return '/home';
       return null;
     },

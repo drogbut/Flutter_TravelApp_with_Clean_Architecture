@@ -20,9 +20,9 @@ class StoreLogoButton extends StatelessWidget {
     final theme = Theme.of(context);
     final String shopIcon;
     if (theme.brightness == Brightness.dark) {
-      shopIcon = 'assets/images/shopicon_darkmode.svg';
+      shopIcon = 'assets/images/travel_logo.svg';
     } else {
-      shopIcon = 'assets/images/shopicon.svg';
+      shopIcon = 'assets/images/travel_logo.svg';
     }
 
     return InkWell(

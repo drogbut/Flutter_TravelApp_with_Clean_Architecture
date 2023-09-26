@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// [SdIconButton] styled for a webshop 2.0 icons. All optional settings for
+/// [SdIconButton] styled for a travel app icons. All optional settings for
 /// this widget are repeated in the IconButton widget.
 ///
 /// See also:
@@ -44,7 +44,7 @@ class SdIconButton extends StatelessWidget {
       shape: const CircleBorder(),
       clipBehavior: Clip.hardEdge,
       child: IconButton(
-        highlightColor: Theme.of(context).appBarTheme.foregroundColor,
+        //highlightColor: Theme.of(context).appBarTheme.foregroundColor,
         onPressed: onPressed,
         icon: Icon(icon,
             color: iconColor ?? Theme.of(context).iconTheme.color,
