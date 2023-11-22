@@ -5,7 +5,7 @@ Design and build a travel platform as flutter project.
 # Table of Content
 
 1. [Aim of the project](#Aim-of-the-project)
-2. [App design](#App-Design)
+2. [App design](#Features-developed-in-this-app)
 3. [Working of the project](#Working-of-the-project)
 4. [Running the project](#Running-the-project)
 5. [Contributing to TravelApp](#Contributing-to-TravelApp)
@@ -19,7 +19,7 @@ As a junior mobile developer, this project will allow me to **learn new skills (
 to **extend my knowledge in Dart/Flutter**, but especially to **offer to clients without
 IATA-agreement a mobile app**.
 
-# App Design
+# Features developed in this app
 
 The design of the app is done with the figma software and includes:
 
