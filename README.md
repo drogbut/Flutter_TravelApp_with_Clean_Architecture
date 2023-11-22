@@ -6,7 +6,7 @@ Design and build a travel platform as flutter project.
 
 1. [Aim of the project](#Aim-of-the-project)
 2. [Features developed in this app](#Features-developed-in-this-app)
-3. [Working of the project](#Working-of-the-project)
+3. [New knowledge gained during the project](#New-knowledge-gained-during-the-project)
 4. [Running the project](#Running-the-project)
 5. [Contributing to TravelApp](#Contributing-to-TravelApp)
 
