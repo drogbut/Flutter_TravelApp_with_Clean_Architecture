@@ -17,7 +17,7 @@ design.
 
 As a junior mobile developer, this project will allow me to **learn new skills (UI/UX designer)**,
 to **extend my knowledge in Dart/Flutter**, but especially to **offer to clients without
-IATA-agreement a mobile app** to their customers.
+IATA-agreement a mobile app**.
 
 # App Design
 
