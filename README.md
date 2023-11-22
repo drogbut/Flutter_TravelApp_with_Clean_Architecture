@@ -5,7 +5,7 @@ Design and build a travel platform as flutter project.
 # Table of Content
 
 1. [Aim of the project](#Aim-of-the-project)
-2. [App design](#Features-developed-in-this-app)
+2. [Features developed in this app](#Features-developed-in-this-app)
 3. [Working of the project](#Working-of-the-project)
 4. [Running the project](#Running-the-project)
 5. [Contributing to TravelApp](#Contributing-to-TravelApp)
@@ -20,25 +20,18 @@ to **extend my knowledge in Dart/Flutter**, but especially to **offer to clients
 IATA-agreement a mobile app**.
 
 # Features developed in this app
+1. **Flight offer**: This feature answers the question: What are the cheapest flights from Yaounde to Dusseldorf on December 1st.
+3. 
+4. 
+5. 
 
-The design of the app is done with the figma software and includes:
-
-1. [A style guide](https://www.figma.com/file/mMvfzqhzETRqSQNksAD4fb/My-Travel-App?node-id=56%3A41&t=AnAN9EMoAG2tkXMu-0)
-2. [The mobile page](https://www.figma.com/file/mMvfzqhzETRqSQNksAD4fb/My-Travel-App?node-id=0%3A1&t=AnAN9EMoAG2tkXMu-0)
-3. [The desktop page](https://www.figma.com/file/mMvfzqhzETRqSQNksAD4fb/My-Travel-App?node-id=143%3A35792&t=AnAN9EMoAG2tkXMu-0)
-
-# Working of the project
-
-TravelApp is an end-to-end software solution that helps end-users or travel agencies to manage
-service providers, bookings, pricing, tracking, analyzing the inventory, etc. In addition to the
-ticket sales service, TravelApp includes other services such as hotel, tourism and car hire. The
-basic features are as follows:
-
-1. Onboarding
-2. Home
-3. Product detail
-4. Ckeckout
-5. Confirmation
+# New knowledge gained during the project
+1. **Flutter Project Structure**: The Secret to Maintainable Apps [Reso coder Proposal](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
+2. **How to define Entities**: What kind of data will the Travel App operate with? Why and how do you merge an Entity and a model in Flutter?
+3. **Define the first use-case and test it** get available flights as use-case and using Mockito to make the test Drive development 
+3. **REST-APIs**: How to fetch flight offers from Amadeus API using OAuth2?[Amadeuis authorization](https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262)
+4. 
+5. 
 
 # Running the project
 

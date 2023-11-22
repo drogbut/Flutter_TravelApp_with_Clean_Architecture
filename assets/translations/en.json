@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "locale": "English (United kingdom)",
+  "@language": {
+    "description": "The current language"
+  },
+  "labelSettings": "Settings",
+  "btnLogin": "Login",
+  "labelChooseLanguage": "choose Language",
+  "btnSave": "Save",
+  "regionalSettings": "Regional settings",
+  "language": "Language",
+  "country": "Country",
+  "abr7Separator": "/",
+  "region": "Region",
+  "currency": "Currency"
+
+}

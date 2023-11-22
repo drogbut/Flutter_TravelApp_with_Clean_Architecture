@@ -1,0 +1,18 @@
+{
+  "@@locale": "fr",
+  "locale": "Français",
+  "@language": {
+    "description": "La langue actuelle"
+  },
+  "labelSettings": "Paramètres",
+  "btnLogin": "Connexion",
+  "labelChooseLanguage": "Choisir la langue",
+  "btnSave": "Enregistrer",
+  "regionalSettings": "Paramètres régionaux",
+  "language": "Langue",
+  "country": "Pays",
+  "abr7Separator": "/",
+  "region": "Région",
+  "currency": "Devise"
+
+}
