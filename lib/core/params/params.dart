@@ -1,5 +1,5 @@
-import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
-import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
+import '../../features/flight_offer/domain/entities/arrival.dart';
+import '../../features/flight_offer/domain/entities/departure.dart';
 
 class NoParams {}
 

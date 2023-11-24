@@ -4,18 +4,18 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:travel_app/core/errors/failures/failure.dart';
 import 'package:travel_app/core/usecase/usecase.dart';
-import 'package:travel_app/features/flight_offer/data/models/aircraft/aircraft.dart';
-import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
-import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
-import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment/fare_details_by_segment.dart';
-import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart';
-import 'package:travel_app/features/flight_offer/data/models/included_checked_bags/included_checked_bags.dart';
-import 'package:travel_app/features/flight_offer/data/models/itineraries/itineraries.dart';
-import 'package:travel_app/features/flight_offer/data/models/operating/operating.dart';
-import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
-import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
-import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
-import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/aircraft.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/arrival.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/departure.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/fare_details_by_segment.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/included_checked_bags.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/itineraries.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/operating.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/price.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/pricing_options.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/segments.dart';
+import 'package:travel_app/features/flight_offer/domain/entities/traveler_pricings.dart';
 import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart';
 import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_flights.dart';
 
@@ -81,19 +81,30 @@ void main() {
       getAvailableFlights = GetAvailableFlights(mockRepository);
     });
 
+    final params = AvailableFlightParams(
+      originLocationCode: 'NSI',
+      destinationLocationCode: 'DUS',
+      departureDate: '2024-01-02T11:35:00',
+      adults: 'ADLUT',
+    );
+
     /// If negative test
     test('should return a ServerFailure when an exception occurs', () async {
       // Arrange
-      when(mockRepository.getAvailableFlights()).thenAnswer(
-          (_) async => Left(ServerFailure(errorMessage: "An error occurred")));
+      when(mockRepository.getAvailableFlights(
+              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+          .thenAnswer((_) async =>
+              Left(ServerFailure(errorMessage: "An error occurred")));
 
       // Act
-      final result = await getAvailableFlights(NoParams());
+      final result = await getAvailableFlights(params);
 
       // Assert
       expect(result, isA<Left<Failure, FlightOffer>>());
 
-      verify(mockRepository.getAvailableFlights()).called(1);
+      verify(mockRepository.getAvailableFlights(
+              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+          .called(1);
       verifyNoMoreInteractions(mockRepository);
     });
 
@@ -101,16 +112,19 @@ void main() {
     test('should return a FlightOffer when the call is successful', () async {
       // Arrange
       const expectedFlightOffer = flightOffer;
-      when(mockRepository.getAvailableFlights())
+      when(mockRepository.getAvailableFlights(
+              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
           .thenAnswer((_) async => const Right(expectedFlightOffer));
 
       // Act
-      final result = await getAvailableFlights(NoParams());
+      final result = await getAvailableFlights(params);
 
       // Assert
       expect(result, const Right(expectedFlightOffer));
 
-      verify(mockRepository.getAvailableFlights()).called(1);
+      verify(mockRepository.getAvailableFlights(
+              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+          .called(1);
       verifyNoMoreInteractions(mockRepository);
     });
   });
@@ -127,13 +141,11 @@ const flightOffer = FlightOffer(
   lastTicketingDate: '2023-12-31',
   lastTicketingDateTime: '2023-12-31T23:59:59',
   numberOfBookableSeats: 5,
-  itineraries: Itineraries(
-      duration: 'PT14H15M',
-      segments: Segments(
-          departure: Departure(
-              iataCode: 'SYD', terminal: '1', at: '2021-11-01T11:35:00'),
-          arrival: Arrival(
-              iataCode: 'MNL', terminal: '2', at: '2021-11-01T11:35:00'),
+  itineraries: [
+    Itineraries(duration: 'PT14H15M', segments: [
+      Segments(
+          departure: Departure(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
+          arrival: Arrival(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
           carrierCode: 'PR',
           number: '212',
           aircraft: Aircraft(code: '333'),
@@ -141,20 +153,26 @@ const flightOffer = FlightOffer(
           duration: 'PT14H15M',
           id: '1',
           numberOfStops: 0,
-          blacklistedInEU: false)),
-  price: Price(currency: 'Eur', total: 200.0, base: 150.0),
+          blacklistedInEU: false)
+    ])
+  ],
+  price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
   pricingOptions:
-      PricingOptions(fareType: 'PUBLISHED', includedCheckedBagsOnly: true),
-  validatingAirlineCodes: 'PR',
-  travelerPricings: TravelerPricings(
-      travelerId: '1',
-      fareOption: 'STANDARD',
-      travelerType: 'ADLUT',
-      price: Price(currency: 'Eur', total: 200.0, base: 150.0),
-      fareDetailsBySegment: FareDetailsBySegment(
-          segmentId: '1',
-          cabin: 'ECONOMY',
-          fareBasis: 'EOBAU',
-          classe: 'E',
-          includedCheckedBags: IncludedCheckedBags(weight: 25, weightUnit: 0))),
+      PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
+  validatingAirlineCodes: ['PR'],
+  travelerPricings: [
+    TravelerPricings(
+        travelerId: '1',
+        fareOption: 'STANDARD',
+        travelerType: 'ADLUT',
+        price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
+        fareDetailsBySegment: [
+          FareDetailsBySegment(
+              segmentId: '1',
+              cabin: 'ECONOMY',
+              fareBasis: 'EOBAU',
+              classe: 'E',
+              includedCheckedBags: IncludedCheckedBags(quantity: 55))
+        ])
+  ],
 );

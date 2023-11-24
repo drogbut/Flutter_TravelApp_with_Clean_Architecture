@@ -18,9 +18,19 @@ class NoParams extends Equatable {
 
 /// This will be used by the code calling the use case whenever the use case
 /// accept parameters.
-class Params extends Equatable {
-  int? index;
+class AvailableFlightParams extends Equatable {
+  String? originLocationCode;
+  String? destinationLocationCode;
+  String? departureDate;
+  String? adults;
+
+  AvailableFlightParams(
+      {required this.originLocationCode,
+      required this.destinationLocationCode,
+      required this.departureDate,
+      required this.adults});
 
   @override
-  List<Object?> get props => [index];
+  List<Object?> get props =>
+      [originLocationCode, destinationLocationCode, departureDate, adults];
 }
