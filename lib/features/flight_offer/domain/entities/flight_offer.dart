@@ -37,7 +37,7 @@ class FlightOffer extends Equatable {
 
   const FlightOffer({
     this.type,
-    this.id,
+    required this.id,
     this.source,
     this.instantTicketingRequired,
     this.nonHomogeneous,
@@ -45,11 +45,11 @@ class FlightOffer extends Equatable {
     this.lastTicketingDate,
     this.lastTicketingDateTime,
     this.numberOfBookableSeats,
-    this.itineraries,
+    required this.itineraries,
     this.price,
     this.pricingOptions,
     this.validatingAirlineCodes,
-    this.travelerPricings,
+    required this.travelerPricings,
   });
 
   @override

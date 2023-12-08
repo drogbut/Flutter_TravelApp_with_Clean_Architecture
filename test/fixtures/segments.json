@@ -1,0 +1,24 @@
+{
+  "departure": {
+    "iataCode": "SYD",
+    "terminal": "1",
+    "at": "2021-11-01T11:35:00"
+  },
+  "arrival": {
+    "iataCode": "MNL",
+    "terminal": "2",
+    "at": "2021-11-01T16:50:00"
+  },
+  "carrierCode": null,
+  "number": null,
+  "aircraft": {
+    "code": "333"
+  },
+  "operating": {
+    "carrierCode": "PR"
+  },
+  "duration": null,
+  "id": "1",
+  "numberOfStops": 0,
+  "blacklistedInEU": false
+}

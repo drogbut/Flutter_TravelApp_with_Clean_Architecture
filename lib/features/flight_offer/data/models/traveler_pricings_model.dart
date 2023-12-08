@@ -1,14 +1,15 @@
-import '../../domain/entities/fare_details_by_segment.dart';
-import '../../domain/entities/price.dart';
+import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment_model.dart';
+import 'package:travel_app/features/flight_offer/data/models/price_model.dart';
+
 import '../../domain/entities/traveler_pricings.dart';
 
 class TravelerPricingsModel extends TravelerPricings {
   const TravelerPricingsModel({
     String? travelerId,
     String? fareOption,
-    required String travelerType,
-    Price? price,
-    List<FareDetailsBySegment>? fareDetailsBySegment,
+    String? travelerType,
+    PriceModel? price,
+    List<FareDetailsBySegmentModel>? fareDetailsBySegment,
   }) : super(
           travelerId: travelerId,
           fareOption: fareOption,
@@ -21,10 +22,12 @@ class TravelerPricingsModel extends TravelerPricings {
     return TravelerPricingsModel(
       travelerId: json['travelerId'] as String?,
       fareOption: json['fareOption'] as String?,
-      travelerType: json['travelerType'] as String,
-      price: json['price'] as Price?,
-      fareDetailsBySegment:
-          json['fareDetailsBySegment'] as List<FareDetailsBySegment>?,
+      travelerType: json['travelerType'] as String?,
+      price: PriceModel.fromJson(json['price'] as Map<String, dynamic>),
+      fareDetailsBySegment: (json['fareDetailsBySegment'] as List<dynamic>?)
+          ?.map((e) =>
+              FareDetailsBySegmentModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 

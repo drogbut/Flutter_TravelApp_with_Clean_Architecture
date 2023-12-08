@@ -1,8 +1,9 @@
+import 'package:travel_app/features/flight_offer/data/models/price_model.dart';
+import 'package:travel_app/features/flight_offer/data/models/pricing_options_model.dart';
+import 'package:travel_app/features/flight_offer/data/models/traveler_pricings_model.dart';
+
 import '../../domain/entities/flight_offer.dart';
-import '../../domain/entities/itineraries.dart';
-import '../../domain/entities/price.dart';
-import '../../domain/entities/pricing_options.dart';
-import '../../domain/entities/traveler_pricings.dart';
+import 'itineraries_model.dart';
 
 class FlightOfferModel extends FlightOffer {
   const FlightOfferModel({
@@ -15,11 +16,11 @@ class FlightOfferModel extends FlightOffer {
     String? lastTicketingDate,
     String? lastTicketingDateTime,
     num? numberOfBookableSeats,
-    List<Itineraries>? itineraries,
-    Price? price,
-    PricingOptions? pricingOptions,
+    List<ItinerariesModel>? itineraries,
+    PriceModel? price,
+    PricingOptionsModel? pricingOptions,
     List<String>? validatingAirlineCodes,
-    List<TravelerPricings>? travelerPricings,
+    List<TravelerPricingsModel>? travelerPricings,
   }) : super(
           type: type,
           id: id,
@@ -48,11 +49,19 @@ class FlightOfferModel extends FlightOffer {
       lastTicketingDate: json['lastTicketingDate'] as String?,
       lastTicketingDateTime: json['lastTicketingDateTime'] as String?,
       numberOfBookableSeats: json['numberOfBookableSeats'] as num?,
-      itineraries: json['itineraries'] as List<Itineraries>?,
-      price: json['price'] as Price?,
-      pricingOptions: json['pricingOptions'] as PricingOptions?,
-      validatingAirlineCodes: json['validatingAirlineCodes'] as List<String>?,
-      travelerPricings: json['travelerPricings'] as List<TravelerPricings>?,
+      itineraries: (json['itineraries'] as List<dynamic>?)
+          ?.map((e) => ItinerariesModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      price: PriceModel.fromJson(json['price'] as Map<String, dynamic>),
+      pricingOptions: PricingOptionsModel.fromJson(
+          json['pricingOptions'] as Map<String, dynamic>),
+      validatingAirlineCodes: (json['validatingAirlineCodes'] as List<dynamic>?)
+          ?.map((e) => e.toString())
+          .toList(),
+      travelerPricings: (json['travelerPricings'] as List<dynamic>?)
+          ?.map(
+              (e) => TravelerPricingsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 

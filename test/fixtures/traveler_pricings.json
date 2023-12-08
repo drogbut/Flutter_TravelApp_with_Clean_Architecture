@@ -1,0 +1,11 @@
+{
+  "travelerId": "1",
+  "fareOption": "STANDARD",
+  "travelerType": "ADULT",
+  "price": {
+    "currency": "EUR",
+    "total": "355.34",
+    "base": "255.00"
+  },
+  "fareDetailsBySegment": null
+}

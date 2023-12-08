@@ -8,7 +8,7 @@ class Itineraries extends Equatable {
   final String? duration;
   final List<Segments>? segments;
 
-  const Itineraries({this.duration, this.segments});
+  const Itineraries({this.duration, required this.segments});
 
   @override
   List<Object?> get props => [duration, segments];

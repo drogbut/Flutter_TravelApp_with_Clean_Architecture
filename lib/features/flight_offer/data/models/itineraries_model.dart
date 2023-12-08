@@ -1,10 +1,10 @@
 import '../../domain/entities/itineraries.dart';
-import '../../domain/entities/segments.dart';
+import 'segments_model.dart';
 
 class ItinerariesModel extends Itineraries {
   const ItinerariesModel({
     String? duration,
-    List<Segments>? segments,
+    List<SegmentsModel>? segments,
   }) : super(
           duration: duration,
           segments: segments,
@@ -13,7 +13,9 @@ class ItinerariesModel extends Itineraries {
   factory ItinerariesModel.fromJson(Map<String, dynamic> json) {
     return ItinerariesModel(
       duration: json['duration'] as String?,
-      segments: json['segments'] as List<Segments>?,
+      segments: (json['segments'] as List<dynamic>?)
+          ?.map((e) => SegmentsModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
   }
 

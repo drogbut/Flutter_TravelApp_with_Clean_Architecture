@@ -1,4 +1,5 @@
-import '../../domain/entities/fees.dart';
+import 'package:travel_app/features/flight_offer/data/models/fees_model.dart';
+
 import '../../domain/entities/price_with_fees.dart';
 
 class PriceWithFeesModel extends PriceWithFees {
@@ -6,7 +7,7 @@ class PriceWithFeesModel extends PriceWithFees {
     String? currency,
     String? total,
     String? base,
-    List<Fees>? fees,
+    List<FeesModel>? fees,
     String? grandTotal,
   }) : super(
           currency: currency,
@@ -21,7 +22,9 @@ class PriceWithFeesModel extends PriceWithFees {
       currency: json['currency'] as String?,
       total: json['total'] as String?,
       base: json['base'] as String?,
-      fees: json['fees'] as List<Fees>?,
+      fees: (json['fees'] as List<dynamic>?)
+          ?.map((e) => FeesModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       grandTotal: json['grandTotal'] as String?,
     );
   }

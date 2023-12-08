@@ -1,5 +1,5 @@
 import '../../domain/entities/fare_details_by_segment.dart';
-import '../../domain/entities/included_checked_bags.dart';
+import 'included_checked_bags_model.dart';
 
 class FareDetailsBySegmentModel extends FareDetailsBySegment {
   const FareDetailsBySegmentModel({
@@ -8,7 +8,7 @@ class FareDetailsBySegmentModel extends FareDetailsBySegment {
     String? fareBasis,
     String? brandedFare,
     String? classe,
-    IncludedCheckedBags? includedCheckedBags,
+    IncludedCheckedBagsModel? includedCheckedBags,
   }) : super(
           segmentId: segmentId,
           cabin: cabin,
@@ -25,7 +25,9 @@ class FareDetailsBySegmentModel extends FareDetailsBySegment {
       fareBasis: json['fareBasis'] as String?,
       brandedFare: json['brandedFare'] as String?,
       classe: json['class'] as String?,
-      includedCheckedBags: json['includedCheckedBags'] as IncludedCheckedBags?,
+      includedCheckedBags: IncludedCheckedBagsModel.fromJson(
+        json['includedCheckedBags'] as Map<String, dynamic>,
+      ),
     );
   }
 
