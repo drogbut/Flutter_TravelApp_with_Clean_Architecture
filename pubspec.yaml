@@ -20,15 +20,16 @@ dependencies:
   equatable: ^2.0.5
 
   # Unit-Tests
-  mockito: ^5.4.2
+  mockito: ^5.4.4
 
   # Remote fetch data or local store data
   dio: ^5.3.3
+  data_connection_checker_nulls: ^0.0.2
   http: ^1.1.0
   shared_preferences: ^2.2.2
 
   # state management
-  mobx: ^2.2.0
+  mobx: ^2.2.3
   flutter_mobx: ^2.1.0
   provider: ^6.0.5
 
@@ -46,8 +47,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
-  data_connection_checker_tv: ^0.3.5-nullsafety
   json_annotation: ^4.8.1
+
 
 
 dev_dependencies:

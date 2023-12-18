@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/connection /network_info.dart';
-import '../../../../core/errors/exceptions/exceptions.dart';
-import '../../../../core/errors/failures/failure.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../../core/network/network_info.dart';
 import '../../../../core/params/params.dart';
 import '../../domain/repository/template_repository.dart';
 import '../databasesources/template_local_data_source.dart';
@@ -32,14 +32,14 @@ class TemplateRepositoryImpl implements TemplateRepository {
 
         return Right(remoteTemplate);
       } on ServerException {
-        return Left(ServerFailure(errorMessage: 'This is a server exception'));
+        return Left(ServerFailure());
       }
     } else {
       try {
         TemplateModel localTemplate = await localDataSource.getLastTemplate();
         return Right(localTemplate);
       } on CacheException {
-        return Left(CacheFailure(errorMessage: 'This is a cache exception'));
+        return Left(CacheFailure());
       }
     }
   }

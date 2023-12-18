@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:travel_app/core/errors/failures/failure.dart';
+import 'package:travel_app/core/errors/failure.dart';
 import 'package:travel_app/core/usecase/usecase.dart';
 import 'package:travel_app/features/flight_offer/domain/entities/aircraft.dart';
 import 'package:travel_app/features/flight_offer/domain/entities/arrival.dart';
@@ -93,8 +93,7 @@ void main() {
       // Arrange
       when(mockRepository.getAvailableFlights(
               'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
-          .thenAnswer((_) async =>
-              Left(ServerFailure(errorMessage: "An error occurred")));
+          .thenAnswer((_) async => Left(ServerFailure()));
 
       // Act
       final result = await getAvailableFlights(params);

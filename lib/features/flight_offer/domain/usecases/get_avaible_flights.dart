@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:travel_app/core/usecase/usecase.dart';
 
-import '../../../../core/errors/failures/failure.dart';
+import '../../../../core/errors/failure.dart';
 import '../entities/flight_offer.dart';
 import '../repositories/flight_offer_repository.dart';
 

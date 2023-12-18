@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../../../../core/errors/exceptions/exceptions.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../../../../core/params/params.dart';
 import '../models/template_model.dart';
 

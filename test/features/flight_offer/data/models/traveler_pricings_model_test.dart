@@ -18,7 +18,7 @@ void main() {
 
   group('Traveler pricing model test', () {
     /// (1) instance test
-    test('Should create a valid TravelerPricingsModel instance', () {
+    test('Should create a valid TravelerPricingsModel instance', () async {
       expect(travelerPricingsModel, isA<TravelerPricings>());
     });
 

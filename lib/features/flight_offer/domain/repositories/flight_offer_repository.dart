@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/errors/failures/failure.dart';
+import '../../../../core/errors/failure.dart';
 import '../entities/flight_offer.dart';
 
 abstract class FlightOfferRepository {

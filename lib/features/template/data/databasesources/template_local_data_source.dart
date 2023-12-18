@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../core/errors/exceptions/exceptions.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../models/template_model.dart';
 
 abstract class TemplateLocalDataSource {
