@@ -9,7 +9,7 @@ class PricingOptions extends Equatable {
     this.includedCheckedBagsOnly,
   });
 
-  final List<String>? fareType;
+  final List<dynamic>? fareType;
   final bool? includedCheckedBagsOnly;
 
   @override

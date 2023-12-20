@@ -2,7 +2,7 @@ import '../../domain/entities/pricing_options.dart';
 
 class PricingOptionsModel extends PricingOptions {
   const PricingOptionsModel({
-    List<String>? fareType,
+    List<dynamic>? fareType,
     bool? includedCheckedBagsOnly,
   }) : super(
           fareType: fareType,
@@ -11,7 +11,7 @@ class PricingOptionsModel extends PricingOptions {
 
   factory PricingOptionsModel.fromJson(Map<String, dynamic> json) {
     return PricingOptionsModel(
-      fareType: json['fareType'] as List<String>?,
+      fareType: json['fareType'] as List<dynamic>?,
       includedCheckedBagsOnly: json['includedCheckedBagsOnly'] as bool?,
     );
   }
