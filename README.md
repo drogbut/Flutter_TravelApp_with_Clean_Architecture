@@ -30,8 +30,10 @@ IATA-agreement a mobile app**.
 2. **How to define Entities**: What kind of data will the Travel App operate with? Why and how do you merge an Entity and a model in Flutter?
 3. **Define the first use-case and test it** get available flights as use-case and using Mockito to make the test Drive development 
 3. **REST-APIs**: How to fetch flight offers from Amadeus API using OAuth2?[Amadeuis authorization](https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262)
-4. **dependeny Inversion**: How do you separate the domain layer (Abstract Repositories) and the Data layer (Repository involves)?
+4. **Dependency Inversion**: How do you separate the domain layer (Abstract Repositories) and the Data layer (Repository involves)?
 5. **Network info**: What is the benefit of managing network information separately from the repository?
+6. **Local data source**: How can I display the last cached FlightOffers data when offline?
+7. **Remote Data source**: How to call the API data using oauth2 ?
 
 # Running the project
 

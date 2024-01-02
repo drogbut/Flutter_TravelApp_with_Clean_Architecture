@@ -4,10 +4,7 @@ import 'package:equatable/equatable.dart';
 /// includedCheckedBagsOnly : true
 
 class PricingOptions extends Equatable {
-  const PricingOptions({
-    this.fareType,
-    this.includedCheckedBagsOnly,
-  });
+  const PricingOptions({this.fareType, this.includedCheckedBagsOnly});
 
   final List<dynamic>? fareType;
   final bool? includedCheckedBagsOnly;

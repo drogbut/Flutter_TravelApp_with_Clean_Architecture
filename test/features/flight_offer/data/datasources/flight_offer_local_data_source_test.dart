@@ -5,7 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/core/errors/exceptions.dart';
-import 'package:travel_app/features/flight_offer/data/datasources/flight_offer_local_data_source.dart';
+import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_local_data_source.dart';
 import 'package:travel_app/features/flight_offer/data/models/aircraft_model.dart';
 import 'package:travel_app/features/flight_offer/data/models/arrival_model.dart';
 import 'package:travel_app/features/flight_offer/data/models/departure_model.dart';

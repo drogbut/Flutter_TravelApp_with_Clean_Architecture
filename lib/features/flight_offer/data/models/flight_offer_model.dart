@@ -49,19 +49,18 @@ class FlightOfferModel extends FlightOffer {
       lastTicketingDate: json['lastTicketingDate'] as String?,
       lastTicketingDateTime: json['lastTicketingDateTime'] as String?,
       numberOfBookableSeats: json['numberOfBookableSeats'] as num?,
-      itineraries: (json['itineraries'] as List<dynamic>?)
-          ?.map((e) => ItinerariesModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      price: PriceModel.fromJson(json['price'] as Map<String, dynamic>),
-      pricingOptions: PricingOptionsModel.fromJson(
-          json['pricingOptions'] as Map<String, dynamic>),
+      itineraries: (json['itineraries'] as List<ItinerariesModel>)
+      /*.cast<Map<String, dynamic>>()
+          .map((e) => ItinerariesModel.fromJson(e))
+          .toList()*/
+      ,
+      price: json['price'] as PriceModel?,
+      pricingOptions: json['pricingOptions'] as PricingOptionsModel?,
       validatingAirlineCodes: (json['validatingAirlineCodes'] as List<dynamic>?)
           ?.map((e) => e.toString())
           .toList(),
-      travelerPricings: (json['travelerPricings'] as List<dynamic>?)
-          ?.map(
-              (e) => TravelerPricingsModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      travelerPricings:
+          (json['travelerPricings'] as List<TravelerPricingsModel>?),
     );
   }
 

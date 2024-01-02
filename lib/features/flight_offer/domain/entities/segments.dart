@@ -28,8 +28,8 @@ class Segments extends Equatable {
   final bool? blacklistedInEU;
 
   const Segments({
-    required this.departure,
-    required this.arrival,
+    this.departure,
+    this.arrival,
     this.carrierCode,
     this.number,
     this.aircraft,

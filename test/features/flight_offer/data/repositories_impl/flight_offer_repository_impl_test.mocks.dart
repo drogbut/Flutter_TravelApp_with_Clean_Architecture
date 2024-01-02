@@ -7,11 +7,12 @@ import 'dart:async' as _i8;
 
 import 'package:dartz/dartz.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i11;
 import 'package:travel_app/core/errors/failure.dart' as _i9;
 import 'package:travel_app/core/network/network_info.dart' as _i4;
-import 'package:travel_app/features/flight_offer/data/datasources/flight_offer_local_data_source.dart'
+import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_local_data_source.dart'
     as _i3;
-import 'package:travel_app/features/flight_offer/data/datasources/flight_offer_remote_data_source.dart'
+import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_remote_data_source.dart'
     as _i2;
 import 'package:travel_app/features/flight_offer/data/models/flight_offer_model.dart'
     as _i6;
@@ -164,6 +165,21 @@ class MockFlightOfferRemoteDataSource extends _i1.Mock
   MockFlightOfferRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  _i8.Future<String> getAccessToken() => (super.noSuchMethod(
+        Invocation.method(
+          #getAccessToken,
+          [],
+        ),
+        returnValue: _i8.Future<String>.value(_i11.dummyValue<String>(
+          this,
+          Invocation.method(
+            #getAccessToken,
+            [],
+          ),
+        )),
+      ) as _i8.Future<String>);
 
   @override
   _i8.Future<_i6.FlightOfferModel> getAvailableFlights({

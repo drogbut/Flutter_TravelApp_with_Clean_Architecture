@@ -3,9 +3,7 @@ import 'package:equatable/equatable.dart';
 /// carrierCode : "SN"
 
 class Operating extends Equatable {
-  const Operating({
-    this.carrierCode,
-  });
+  const Operating({this.carrierCode});
   final String? carrierCode;
 
   @override

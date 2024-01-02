@@ -21,55 +21,6 @@ import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_fli
 
 import 'get_available_flights_test.mocks.dart';
 
-/// How to run the get available flights unit test?
-///
-/// Keep in mind that this code is part of a testing suite, and the actual
-/// implementation of the `[GetAvailableFlights]` usecase and its interaction
-/// with the `[FlightOfferRepository]` would be in separate files.
-///
-/// 1. Imports:
-/// The `Mockito` library is used for mocking, and `Dartz` is used for working
-/// with functional programming concepts, such as the `Either` type.
-///
-/// 2. Test Configuration:
-///   - The `@GenerateMocks` annotation is used to generate mock classes for the
-///     specified types. It's generating mocks for the [FlightOfferRepository].
-///     This is often done to isolate the unit under test from its dependencies.
-///   - The `main()` function is where the test setup and execution are configured.
-///
-/// 3. Test Setup:
-///   - Inside the `main()` function, the `setUp()` method is used to initialize
-///     the necessary objects for testing. It creates an instance of the
-///     [MockFlightOfferRepository] and the [GetAvailableFlights] use case,
-///     injecting the mock repository.
-///   - The `group` function is used to organize related tests under the label [GetAvailableFlights].
-///   - The following is based on the Arrange-Act-Assert (AAA) model commonly used in unit testing.
-///
-/// 4. Negative Test Case:
-///   - The first test within the group is checking the behavior when an exception
-///     occurs during the [getAvailableFlights] call. It uses the `when` and
-///     `thenAnswer` methods from the Mockito library to mock the repository's behavior.
-///   - The `expect` statements verify that the result is of the expected type
-///     Left<Failure, FlightOffer>, and the error is of type [ServerFailure].
-///   - The `verify` and `verifyNoMoreInteractions` statements ensure that the
-///     mocked repository method was called exactly once and that there are no
-///     unexpected interactions.
-///
-///  5. Positive Test Case:
-///   - The second test checks the scenario when the [getAvailableFlights] call
-///     is successful. It configures the mock repository to return a specific
-///     [FlightOffer] when called.
-///   - Similar to the negative test, it uses `expect` statements to verify the
-///     result type and checks that the returned data matches the expected [FlightOffer].
-///   - The `verify` and `verifyNoMoreInteractions` statements ensure that the
-///     mocked repository method was called exactly once and that there are no
-///     unexpected interactions.
-///
-/// 6. Test Data:
-///   - At the end of the file, there is a constant [flightOffer] which represents
-///     a sample [FlightOffer] object. This data is used in the positive test case
-///     for comparison.
-
 @GenerateMocks([FlightOfferRepository])
 void main() {
   late GetAvailableFlights getAvailableFlights;
