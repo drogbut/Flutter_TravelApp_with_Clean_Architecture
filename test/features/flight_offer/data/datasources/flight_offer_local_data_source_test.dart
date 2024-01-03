@@ -69,15 +69,14 @@ void main() {
     final jsonToString = json.encode(tFlightOfferModel.toJson());
     test("should call sharedPreferences to cache data", () async {
       // arrange
-      when(mockSharedPreferences.setString(CACHED_FLIGHT_OFFER, jsonToString))
+      when(mockSharedPreferences.setString(cachedFlightOffer, jsonToString))
           .thenAnswer((_) async => true);
 
       // act
       await dataSource.cacheAvailableFlights(tFlightOfferModel);
 
       // assert
-      verify(
-          mockSharedPreferences.setString(CACHED_FLIGHT_OFFER, jsonToString));
+      verify(mockSharedPreferences.setString(cachedFlightOffer, jsonToString));
     });
   });
 }

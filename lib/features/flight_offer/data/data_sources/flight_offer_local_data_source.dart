@@ -15,7 +15,7 @@ abstract class FlightOfferLocalDataSource {
   Future<void> cacheAvailableFlights(FlightOfferModel flightOfferModel);
 }
 
-const CACHED_FLIGHT_OFFER = 'CACHED_FLIGHT_OFFER';
+const cachedFlightOffer = 'CACHED_FLIGHT_OFFER';
 
 class FlightOfferLocalDataSourceImpl extends FlightOfferLocalDataSource {
   final SharedPreferences sharedPreferences;
@@ -23,7 +23,7 @@ class FlightOfferLocalDataSourceImpl extends FlightOfferLocalDataSource {
 
   @override
   Future<FlightOfferModel> getLastAvailableFlights() {
-    final jsonString = sharedPreferences.getString(CACHED_FLIGHT_OFFER);
+    final jsonString = sharedPreferences.getString(cachedFlightOffer);
     if (jsonString != null) {
       return Future.value(FlightOfferModel.fromJson(json.decode(jsonString)));
     } else {
@@ -34,6 +34,6 @@ class FlightOfferLocalDataSourceImpl extends FlightOfferLocalDataSource {
   @override
   Future<void> cacheAvailableFlights(FlightOfferModel flightOfferModel) {
     final jsonToString = json.encode(flightOfferModel.toJson());
-    return sharedPreferences.setString(CACHED_FLIGHT_OFFER, jsonToString);
+    return sharedPreferences.setString(cachedFlightOffer, jsonToString);
   }
 }

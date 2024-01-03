@@ -23,7 +23,7 @@ class TemplateRepositoryImpl implements TemplateRepository {
   @override
   Future<Either<Failure, TemplateModel>> getTemplate(
       {required TemplateParams templateParams}) async {
-    if (await networkInfo.isConnected!) {
+    if (await networkInfo.isConnected) {
       try {
         TemplateModel remoteTemplate =
             await remoteDataSource.getTemplate(templateParams: templateParams);

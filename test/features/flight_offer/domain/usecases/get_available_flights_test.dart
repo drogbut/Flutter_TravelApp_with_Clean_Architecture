@@ -32,7 +32,7 @@ void main() {
       getAvailableFlights = GetAvailableFlights(mockRepository);
     });
 
-    final params = AvailableFlightParams(
+    const params = AvailableFlightParams(
       originLocationCode: 'NSI',
       destinationLocationCode: 'DUS',
       departureDate: '2024-01-02T11:35:00',

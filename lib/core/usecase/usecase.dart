@@ -19,12 +19,12 @@ class NoParams extends Equatable {
 /// This will be used by the code calling the use case whenever the use case
 /// accept parameters.
 class AvailableFlightParams extends Equatable {
-  String? originLocationCode;
-  String? destinationLocationCode;
-  String? departureDate;
-  String? adults;
+  final String? originLocationCode;
+  final String? destinationLocationCode;
+  final String? departureDate;
+  final String? adults;
 
-  AvailableFlightParams(
+  const AvailableFlightParams(
       {required this.originLocationCode,
       required this.destinationLocationCode,
       required this.departureDate,

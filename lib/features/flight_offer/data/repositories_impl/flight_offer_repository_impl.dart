@@ -25,7 +25,7 @@ class FlightOfferRepositoryImpl extends FlightOfferRepository {
       String? destinationLocationCode,
       String? departureDate,
       String? adults) async {
-    if (await networkInfo.isConnected!) {
+    if (await networkInfo.isConnected) {
       try {
         final remoteData = await remoteDataSource.getAvailableFlights(
           originLocationCode: originLocationCode,
