@@ -16,7 +16,10 @@ class GetAvailableFlights
   @override
   Future<Either<Failure, FlightOffer>> call(
       AvailableFlightParams params) async {
-    return await repository.getAvailableFlights(params.originLocationCode,
-        params.destinationLocationCode, params.departureDate, params.adults);
+    return await repository.getAvailableFlights(
+        params.originLocationCode,
+        params.destinationLocationCode,
+        params.departureDate,
+        params.travelerId);
   }
 }

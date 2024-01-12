@@ -22,15 +22,15 @@ class AvailableFlightParams extends Equatable {
   final String? originLocationCode;
   final String? destinationLocationCode;
   final String? departureDate;
-  final String? adults;
+  final String? travelerId;
 
   const AvailableFlightParams(
       {required this.originLocationCode,
       required this.destinationLocationCode,
       required this.departureDate,
-      required this.adults});
+      required this.travelerId});
 
   @override
   List<Object?> get props =>
-      [originLocationCode, destinationLocationCode, departureDate, adults];
+      [originLocationCode, destinationLocationCode, departureDate, travelerId];
 }

@@ -36,7 +36,7 @@ void main() {
       originLocationCode: 'NSI',
       destinationLocationCode: 'DUS',
       departureDate: '2024-01-02T11:35:00',
-      adults: 'ADLUT',
+      travelerId: 'ADLUT',
     );
 
     /// If negative test
