@@ -7,7 +7,13 @@ ThemeData lightThemeMode() {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
+    scaffoldBackgroundColor: MyColors.onBackground,
     colorScheme: lightColorScheme,
+
+    /// APPBAR THEME
+    appBarTheme: const AppBarTheme(
+      backgroundColor: MyColors.onBackground,
+    ),
 
     /// ICON THEME
     iconButtonTheme: IconButtonThemeData(
@@ -18,6 +24,7 @@ ThemeData lightThemeMode() {
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(5))),
     ).copyWith(
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       backgroundColor: MaterialStateProperty.resolveWith<Color?>(
           (Set<MaterialState> states) {
         if (states.contains(MaterialState.hovered)) {
@@ -123,6 +130,12 @@ ThemeData lightThemeMode() {
         return const Color(0xFFFFFFFF);
       }),
     )),
+
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderSide: BorderSide.none,
+      ),
+    ),
   );
   return themeData;
 }

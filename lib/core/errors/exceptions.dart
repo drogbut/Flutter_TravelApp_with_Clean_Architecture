@@ -1,3 +1,27 @@
-class ServerException implements Exception {}
+class ServerException implements Exception {
+  final String message;
 
-class CacheException implements Exception {}
+  ServerException([this.message = '']);
+
+  @override
+  String toString() {
+    if (message.isNotEmpty) {
+      return 'ServerException: $message';
+    }
+    return 'ServerException';
+  }
+}
+
+class CacheException implements Exception {
+  final String message;
+
+  CacheException([this.message = '']);
+
+  @override
+  String toString() {
+    if (message.isNotEmpty) {
+      return 'CacheException: $message';
+    }
+    return 'CacheException';
+  }
+}

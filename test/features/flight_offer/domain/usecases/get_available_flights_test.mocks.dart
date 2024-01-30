@@ -8,7 +8,7 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:travel_app/core/errors/failure.dart' as _i5;
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart'
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart'
     as _i6;
 import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart'
     as _i3;
@@ -50,7 +50,7 @@ class MockFlightOfferRepository extends _i1.Mock
     String? originLocationCode,
     String? destinationLocationCode,
     String? departureDate,
-    String? adults,
+    String? numberOfPassengers,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -59,7 +59,7 @@ class MockFlightOfferRepository extends _i1.Mock
             originLocationCode,
             destinationLocationCode,
             departureDate,
-            adults,
+            numberOfPassengers,
           ],
         ),
         returnValue: _i4.Future<_i2.Either<_i5.Failure, _i6.FlightOffer>>.value(
@@ -71,7 +71,7 @@ class MockFlightOfferRepository extends _i1.Mock
               originLocationCode,
               destinationLocationCode,
               departureDate,
-              adults,
+              numberOfPassengers,
             ],
           ),
         )),

@@ -3,23 +3,22 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:travel_app/core/errors/failure.dart';
-import 'package:travel_app/core/params/params.dart';
+import 'package:travel_app/core/params/usecase.dart';
 import 'package:travel_app/core/presentation/input_converter.dart';
-import 'package:travel_app/core/usecase/usecase.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/aircraft.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/arrival.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/departure.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/fare_details_by_segment.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/included_checked_bags.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/itineraries.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/operating.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/price.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/pricing_options.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/segments.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/traveler_pricings.dart';
+import 'package:travel_app/features/flight_offer/data/models/aircraft/aircraft.dart';
+import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
+import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
+import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment/fare_details_by_segment.dart';
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart';
+import 'package:travel_app/features/flight_offer/data/models/included_checked_bags/included_checked_bags.dart';
+import 'package:travel_app/features/flight_offer/data/models/itineraries/itineraries.dart';
+import 'package:travel_app/features/flight_offer/data/models/operating/operating.dart';
+import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
+import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
+import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
+import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
 import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_flights.dart';
-import 'package:travel_app/features/flight_offer/presentation/flight_offers/flight_offers_bloc.dart';
+import 'package:travel_app/features/flight_offer/presentation/bloc/flight_offers_bloc.dart';
 
 import 'flight_offers_bloc_test.mocks.dart';
 
@@ -59,11 +58,11 @@ void main() {
 
       // Act
       bloc.add(const SearchAvailableFlights(
-        params: FlightOfferParams(
+        params: AvailableFlightParams(
           departure: 'NSI',
           arrival: 'DUS',
-          departureDate: '2024-01-02T11:35:00',
-          travelerId: '1',
+          departureDate: '2024-01-02',
+          numberOfPassengers: '1',
         ),
       ));
 
@@ -87,11 +86,11 @@ void main() {
 
       // Act
       bloc.add(const SearchAvailableFlights(
-        params: FlightOfferParams(
+        params: AvailableFlightParams(
           departure: 'NSI',
           arrival: 'DUS',
           departureDate: '2024-01-02T11:35:00',
-          travelerId: '1',
+          numberOfPassengers: '1',
         ),
       ));
     });
@@ -104,19 +103,19 @@ void main() {
 
       // Act
       bloc.add(const SearchAvailableFlights(
-          params: FlightOfferParams(
+          params: AvailableFlightParams(
               departure: 'NSI',
               arrival: 'DUS',
               departureDate: '2024-01-02T11:35:00',
-              travelerId: tNumberString)));
+              numberOfPassengers: tNumberString)));
       await untilCalled(mockGetAvailableFlights(any));
 
       // Assert
       const params = AvailableFlightParams(
-          originLocationCode: 'NSI',
-          destinationLocationCode: 'DUS',
+          departure: 'NSI',
+          arrival: 'DUS',
           departureDate: '2024-01-02T11:35:00',
-          travelerId: tNumberString);
+          numberOfPassengers: tNumberString);
       verify(mockGetAvailableFlights(params));
     });
 
@@ -136,11 +135,11 @@ void main() {
       expectLater(bloc.stream, emitsInOrder(expected));
 
       bloc.add(const SearchAvailableFlights(
-          params: FlightOfferParams(
+          params: AvailableFlightParams(
               departure: 'NSI',
               arrival: 'DUS',
               departureDate: '2024-01-02T11:35:00',
-              travelerId: tNumberString)));
+              numberOfPassengers: tNumberString)));
     });
 
     test('should emit [Loading, Error] when getting data fails', () async {
@@ -157,11 +156,11 @@ void main() {
       expectLater(bloc.stream, emitsInOrder(expected));
       // act
       bloc.add(const SearchAvailableFlights(
-          params: FlightOfferParams(
+          params: AvailableFlightParams(
               departure: 'NSI',
               arrival: 'DUS',
               departureDate: '2024-01-02T11:35:00',
-              travelerId: tNumberString)));
+              numberOfPassengers: tNumberString)));
     });
 
     test(
@@ -179,11 +178,11 @@ void main() {
         expectLater(bloc.stream, emitsInOrder(expected));
         // act
         bloc.add(const SearchAvailableFlights(
-            params: FlightOfferParams(
+            params: AvailableFlightParams(
                 departure: 'NSI',
                 arrival: 'DUS',
                 departureDate: '2024-01-02T11:35:00',
-                travelerId: tNumberString)));
+                numberOfPassengers: tNumberString)));
       },
     );
   });

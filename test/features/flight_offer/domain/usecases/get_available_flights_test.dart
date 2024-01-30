@@ -3,19 +3,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:travel_app/core/errors/failure.dart';
-import 'package:travel_app/core/usecase/usecase.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/aircraft.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/arrival.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/departure.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/fare_details_by_segment.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/included_checked_bags.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/itineraries.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/operating.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/price.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/pricing_options.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/segments.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/traveler_pricings.dart';
+import 'package:travel_app/core/params/usecase.dart';
+import 'package:travel_app/features/flight_offer/data/models/aircraft/aircraft.dart';
+import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
+import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
+import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment/fare_details_by_segment.dart';
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart';
+import 'package:travel_app/features/flight_offer/data/models/included_checked_bags/included_checked_bags.dart';
+import 'package:travel_app/features/flight_offer/data/models/itineraries/itineraries.dart';
+import 'package:travel_app/features/flight_offer/data/models/operating/operating.dart';
+import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
+import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
+import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
+import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
 import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart';
 import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_flights.dart';
 
@@ -33,17 +33,17 @@ void main() {
     });
 
     const params = AvailableFlightParams(
-      originLocationCode: 'NSI',
-      destinationLocationCode: 'DUS',
+      departure: 'NSI',
+      arrival: 'DUS',
       departureDate: '2024-01-02T11:35:00',
-      travelerId: 'ADLUT',
+      numberOfPassengers: '1',
     );
 
     /// If negative test
     test('should return a ServerFailure when an exception occurs', () async {
       // Arrange
       when(mockRepository.getAvailableFlights(
-              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+              'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .thenAnswer((_) async => Left(ServerFailure()));
 
       // Act
@@ -53,7 +53,7 @@ void main() {
       expect(result, isA<Left<Failure, FlightOffer>>());
 
       verify(mockRepository.getAvailableFlights(
-              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+              'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .called(1);
       verifyNoMoreInteractions(mockRepository);
     });
@@ -63,17 +63,18 @@ void main() {
       // Arrange
       const expectedFlightOffer = flightOffer;
       when(mockRepository.getAvailableFlights(
-              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+              'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .thenAnswer((_) async => const Right(expectedFlightOffer));
 
       // Act
       final result = await getAvailableFlights(params);
+      final numberOfTravelers = expectedFlightOffer.travelerPricings?.length;
 
       // Assert
+      expect(numberOfTravelers, 1);
       expect(result, const Right(expectedFlightOffer));
-
       verify(mockRepository.getAvailableFlights(
-              'NSI', 'DUS', '2024-01-02T11:35:00', 'ADLUT'))
+              'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .called(1);
       verifyNoMoreInteractions(mockRepository);
     });

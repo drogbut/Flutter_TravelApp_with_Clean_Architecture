@@ -2,11 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:travel_app/core/errors/exceptions.dart';
 import 'package:travel_app/core/errors/failure.dart';
 import 'package:travel_app/core/network/network_info.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart';
 import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart';
 
 import '../data_sources/flight_offer_local_data_source.dart';
 import '../data_sources/flight_offer_remote_data_source.dart';
+import '../models/flight_offer/flight_offer.dart';
 
 class FlightOfferRepositoryImpl extends FlightOfferRepository {
   final FlightOfferRemoteDataSource remoteDataSource;
@@ -24,14 +24,14 @@ class FlightOfferRepositoryImpl extends FlightOfferRepository {
       String? originLocationCode,
       String? destinationLocationCode,
       String? departureDate,
-      String? adults) async {
+      String? numberOfPassengers) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteData = await remoteDataSource.getAvailableFlights(
           originLocationCode: originLocationCode,
           destinationLocationCode: destinationLocationCode,
           departureDate: departureDate,
-          adults: adults,
+          numberOfPassengers: numberOfPassengers,
         );
 
         localDataSource.cacheAvailableFlights(remoteData);

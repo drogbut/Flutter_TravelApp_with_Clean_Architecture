@@ -8,9 +8,9 @@ import 'dart:async' as _i5;
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:travel_app/core/errors/failure.dart' as _i6;
+import 'package:travel_app/core/params/usecase.dart' as _i8;
 import 'package:travel_app/core/presentation/input_converter.dart' as _i9;
-import 'package:travel_app/core/usecase/usecase.dart' as _i8;
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart'
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart'
     as _i7;
 import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart'
     as _i2;
@@ -100,13 +100,13 @@ class MockInputConverter extends _i1.Mock implements _i9.InputConverter {
   _i3.Either<_i6.Failure, int> stringToInteger(String? str) =>
       (super.noSuchMethod(
         Invocation.method(
-          #stringToUnsignedInteger,
+          #stringToInteger,
           [str],
         ),
         returnValue: _FakeEither_1<_i6.Failure, int>(
           this,
           Invocation.method(
-            #stringToUnsignedInteger,
+            #stringToInteger,
             [str],
           ),
         ),

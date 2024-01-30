@@ -23,7 +23,7 @@ class MyConstants {
   static String kTemplate = 'template';
 
   /// The app name
-  static const String appName = "Travel App";
+  static const String appName = "TravelApp";
 
   /// Default zero
   static const double zero = 0.0;
@@ -61,7 +61,7 @@ class MyConstants {
 
   /// Border radius
   static const double borderRadiusSmall = 4.0;
-  static const double borderRadiusMedium = 8.0;
+  static const double borderRadiusMedium = 10.0;
   static const double borderRadiusLarge = 12.0;
 
   static const double borderRadiusXLarge = 16.0;
@@ -80,8 +80,8 @@ class MyConstants {
 
   /// Buttons & Icon-Buttons
   static const double buttonHeightSmall = 24.0;
-  static const double buttonHeightMedium = 44.0;
-  static const double buttonHeightLarge = 40.0;
+  static const double buttonHeightMedium = 50.0;
+  static const double buttonHeightLarge = 60.0;
 
   static const double buttonWidthSmall = 8.0;
   static const double buttonWidthMedium = 16.0;
@@ -96,9 +96,8 @@ class MyConstants {
   /// Padding & Margin
   static const double paddingSmall = 4.0;
   static const double paddingMedium = 8.0;
-  static const double paddingLarge = 12.0;
-  static const double paddingXLarge = 16.0;
-  static const double paddingXXLarge = 24.0;
+  static const double paddingLarge = 16.0;
+  static const double paddingXLarge = 24.0;
 
   /// Dialog
   static const double dialogWidthSmall = 300.0;

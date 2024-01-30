@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:travel_app/core/routing/app_routes.dart';
-import 'package:travel_app/features/app/presentation/pages/home_page.dart';
+import 'package:travel_app/features/flight_offer/presentation/pages/home_page.dart';
 
 /// The route configuration.
 class AppRouter {
@@ -19,7 +18,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: _AppRouterPaths.home,
-        name: AppRoutes.home,
+        name: 'home',
         pageBuilder: (_, state) => _noTransition(state, const HomePage()),
       ),
     ],

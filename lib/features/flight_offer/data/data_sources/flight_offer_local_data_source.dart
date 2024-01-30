@@ -1,18 +1,18 @@
 import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travel_app/core/errors/exceptions.dart';
 
-import '../models/flight_offer_model.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../models/flight_offer/flight_offer.dart';
 
 abstract class FlightOfferLocalDataSource {
-  /// Get the cache [FlightOfferModel] which was gotten the last time the user
+  /// Get the cache [FlightOffer] which was gotten the last time the user
   /// had an internet connection
   ///
   /// Throws a [CacheException] if no cached data is present.
-  Future<FlightOfferModel> getLastAvailableFlights();
+  Future<FlightOffer> getLastAvailableFlights();
 
-  Future<void> cacheAvailableFlights(FlightOfferModel flightOfferModel);
+  Future<void> cacheAvailableFlights(FlightOffer flightOfferModel);
 }
 
 const cachedFlightOffer = 'CACHED_FLIGHT_OFFER';
@@ -22,17 +22,17 @@ class FlightOfferLocalDataSourceImpl extends FlightOfferLocalDataSource {
   FlightOfferLocalDataSourceImpl({required this.sharedPreferences});
 
   @override
-  Future<FlightOfferModel> getLastAvailableFlights() {
+  Future<FlightOffer> getLastAvailableFlights() {
     final jsonString = sharedPreferences.getString(cachedFlightOffer);
     if (jsonString != null) {
-      return Future.value(FlightOfferModel.fromJson(json.decode(jsonString)));
+      return Future.value(FlightOffer.fromJson(json.decode(jsonString)));
     } else {
       throw CacheException();
     }
   }
 
   @override
-  Future<void> cacheAvailableFlights(FlightOfferModel flightOfferModel) {
+  Future<void> cacheAvailableFlights(FlightOffer flightOfferModel) {
     final jsonToString = json.encode(flightOfferModel.toJson());
     return sharedPreferences.setString(cachedFlightOffer, jsonToString);
   }

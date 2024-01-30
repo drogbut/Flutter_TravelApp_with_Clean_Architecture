@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -5,18 +7,18 @@ import 'package:mockito/mockito.dart';
 import 'package:travel_app/core/Keys/my_keys.dart';
 import 'package:travel_app/core/errors/exceptions.dart';
 import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_remote_data_source.dart';
-import 'package:travel_app/features/flight_offer/data/models/aircraft_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/arrival_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/departure_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/flight_offer_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/included_checked_bags_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/itineraries_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/operating_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/price_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/pricing_options_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/segments_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/traveler_pricings_model.dart';
+import 'package:travel_app/features/flight_offer/data/models/aircraft/aircraft.dart';
+import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
+import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
+import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment/fare_details_by_segment.dart';
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart';
+import 'package:travel_app/features/flight_offer/data/models/included_checked_bags/included_checked_bags.dart';
+import 'package:travel_app/features/flight_offer/data/models/itineraries/itineraries.dart';
+import 'package:travel_app/features/flight_offer/data/models/operating/operating.dart';
+import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
+import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
+import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
+import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
 
 import 'flight_offer_remote_data_source_test.mocks.dart';
 
@@ -90,8 +92,7 @@ void main() {
     final String amadeusApiKey = MyKeys.amadeusApiKey;
     final String amadeusApiSecret = MyKeys.amadeusApiSecret;
 
-    test('Should return a FlightOfferModel when the call is successful',
-        () async {
+    test('Should return a FlightOffer when the call is successful', () async {
       // Arrange
       when(mockDio.post(serverUrl,
               data: {
@@ -118,7 +119,7 @@ void main() {
         },
       )).thenAnswer((_) async => Response(
             statusCode: 200,
-            data: tFlightOfferModel.toJson(),
+            data: json.encode(tFlightOffer.toJson()),
             requestOptions: RequestOptions(
               path: '/v2/shopping/flight-offers',
             ),
@@ -130,12 +131,12 @@ void main() {
         originLocationCode: 'SYD',
         destinationLocationCode: 'BKK',
         departureDate: '2023-12-02',
-        adults: '1',
+        numberOfPassengers: '1',
       );
 
       // Assert
       expect(result1, 'valid_token');
-      expect(result2, equals(tFlightOfferModel));
+      expect(result2, equals(tFlightOffer));
     });
 
     test(
@@ -178,7 +179,7 @@ void main() {
         originLocationCode: 'SYD',
         destinationLocationCode: 'BKK',
         departureDate: '2023-12-02',
-        adults: '1',
+        numberOfPassengers: '1',
       );
 
       // Assert
@@ -188,7 +189,7 @@ void main() {
 }
 
 /// Create a test data
-const tFlightOfferModel = FlightOfferModel(
+const tFlightOffer = FlightOffer(
   type: 'flight-offer',
   id: '1',
   source: 'GDS',
@@ -199,37 +200,37 @@ const tFlightOfferModel = FlightOfferModel(
   lastTicketingDateTime: '2023-12-31T23:59:59',
   numberOfBookableSeats: 5,
   itineraries: [
-    ItinerariesModel(duration: 'PT14H15M', segments: [
-      SegmentsModel(
-          departure: DepartureModel(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
-          arrival: ArrivalModel(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
+    Itineraries(duration: 'PT14H15M', segments: [
+      Segments(
+          departure: Departure(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
+          arrival: Arrival(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
           carrierCode: 'PR',
           number: '212',
-          aircraft: AircraftModel(code: '333'),
-          operating: OperatingModel(carrierCode: 'PR'),
+          aircraft: Aircraft(code: '333'),
+          operating: Operating(carrierCode: 'PR'),
           duration: 'PT14H15M',
           id: '1',
           numberOfStops: 0,
           blacklistedInEU: false)
     ])
   ],
-  price: PriceModel(currency: 'Eur', total: '200.0', base: '150.0'),
-  pricingOptions: PricingOptionsModel(
-      fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
+  price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
+  pricingOptions:
+      PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
   travelerPricings: [
-    TravelerPricingsModel(
+    TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',
         travelerType: 'ADLUT',
-        price: PriceModel(currency: 'Eur', total: '200.0', base: '150.0'),
+        price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
         fareDetailsBySegment: [
-          FareDetailsBySegmentModel(
+          FareDetailsBySegment(
               segmentId: '1',
               cabin: 'ECONOMY',
               fareBasis: 'EOBAU',
               classe: 'E',
-              includedCheckedBags: IncludedCheckedBagsModel(quantity: 55))
+              includedCheckedBags: IncludedCheckedBags(quantity: 55))
         ])
   ],
 );

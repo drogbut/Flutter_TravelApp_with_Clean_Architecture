@@ -7,19 +7,17 @@ import 'dart:async' as _i8;
 
 import 'package:dartz/dartz.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i11;
+import 'package:mockito/src/dummies.dart' as _i10;
 import 'package:travel_app/core/errors/failure.dart' as _i9;
 import 'package:travel_app/core/network/network_info.dart' as _i4;
 import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_local_data_source.dart'
     as _i3;
 import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_remote_data_source.dart'
     as _i2;
-import 'package:travel_app/features/flight_offer/data/models/flight_offer_model.dart'
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart'
     as _i6;
 import 'package:travel_app/features/flight_offer/data/repositories_impl/flight_offer_repository_impl.dart'
     as _i7;
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart'
-    as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -76,9 +74,8 @@ class _FakeEither_3<L, R> extends _i1.SmartFake implements _i5.Either<L, R> {
         );
 }
 
-class _FakeFlightOfferModel_4 extends _i1.SmartFake
-    implements _i6.FlightOfferModel {
-  _FakeFlightOfferModel_4(
+class _FakeFlightOffer_4 extends _i1.SmartFake implements _i6.FlightOffer {
+  _FakeFlightOffer_4(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -124,11 +121,11 @@ class MockFlightOfferRepositoryImpl extends _i1.Mock
       ) as _i4.NetworkInfo);
 
   @override
-  _i8.Future<_i5.Either<_i9.Failure, _i10.FlightOffer>> getAvailableFlights(
+  _i8.Future<_i5.Either<_i9.Failure, _i6.FlightOffer>> getAvailableFlights(
     String? originLocationCode,
     String? destinationLocationCode,
     String? departureDate,
-    String? adults,
+    String? numberOfPassengers,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -137,12 +134,11 @@ class MockFlightOfferRepositoryImpl extends _i1.Mock
             originLocationCode,
             destinationLocationCode,
             departureDate,
-            adults,
+            numberOfPassengers,
           ],
         ),
-        returnValue:
-            _i8.Future<_i5.Either<_i9.Failure, _i10.FlightOffer>>.value(
-                _FakeEither_3<_i9.Failure, _i10.FlightOffer>(
+        returnValue: _i8.Future<_i5.Either<_i9.Failure, _i6.FlightOffer>>.value(
+            _FakeEither_3<_i9.Failure, _i6.FlightOffer>(
           this,
           Invocation.method(
             #getAvailableFlights,
@@ -150,11 +146,11 @@ class MockFlightOfferRepositoryImpl extends _i1.Mock
               originLocationCode,
               destinationLocationCode,
               departureDate,
-              adults,
+              numberOfPassengers,
             ],
           ),
         )),
-      ) as _i8.Future<_i5.Either<_i9.Failure, _i10.FlightOffer>>);
+      ) as _i8.Future<_i5.Either<_i9.Failure, _i6.FlightOffer>>);
 }
 
 /// A class which mocks [FlightOfferRemoteDataSource].
@@ -172,7 +168,7 @@ class MockFlightOfferRemoteDataSource extends _i1.Mock
           #getAccessToken,
           [],
         ),
-        returnValue: _i8.Future<String>.value(_i11.dummyValue<String>(
+        returnValue: _i8.Future<String>.value(_i10.dummyValue<String>(
           this,
           Invocation.method(
             #getAccessToken,
@@ -182,11 +178,11 @@ class MockFlightOfferRemoteDataSource extends _i1.Mock
       ) as _i8.Future<String>);
 
   @override
-  _i8.Future<_i6.FlightOfferModel> getAvailableFlights({
+  _i8.Future<_i6.FlightOffer> getAvailableFlights({
     required String? originLocationCode,
     required String? destinationLocationCode,
     required String? departureDate,
-    required String? adults,
+    required String? numberOfPassengers,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -196,11 +192,10 @@ class MockFlightOfferRemoteDataSource extends _i1.Mock
             #originLocationCode: originLocationCode,
             #destinationLocationCode: destinationLocationCode,
             #departureDate: departureDate,
-            #adults: adults,
+            #numberOfPassengers: numberOfPassengers,
           },
         ),
-        returnValue:
-            _i8.Future<_i6.FlightOfferModel>.value(_FakeFlightOfferModel_4(
+        returnValue: _i8.Future<_i6.FlightOffer>.value(_FakeFlightOffer_4(
           this,
           Invocation.method(
             #getAvailableFlights,
@@ -209,11 +204,11 @@ class MockFlightOfferRemoteDataSource extends _i1.Mock
               #originLocationCode: originLocationCode,
               #destinationLocationCode: destinationLocationCode,
               #departureDate: departureDate,
-              #adults: adults,
+              #numberOfPassengers: numberOfPassengers,
             },
           ),
         )),
-      ) as _i8.Future<_i6.FlightOfferModel>);
+      ) as _i8.Future<_i6.FlightOffer>);
 }
 
 /// A class which mocks [FlightOfferLocalDataSource].
@@ -226,25 +221,22 @@ class MockFlightOfferLocalDataSource extends _i1.Mock
   }
 
   @override
-  _i8.Future<_i6.FlightOfferModel> getLastAvailableFlights() =>
-      (super.noSuchMethod(
+  _i8.Future<_i6.FlightOffer> getLastAvailableFlights() => (super.noSuchMethod(
         Invocation.method(
           #getLastAvailableFlights,
           [],
         ),
-        returnValue:
-            _i8.Future<_i6.FlightOfferModel>.value(_FakeFlightOfferModel_4(
+        returnValue: _i8.Future<_i6.FlightOffer>.value(_FakeFlightOffer_4(
           this,
           Invocation.method(
             #getLastAvailableFlights,
             [],
           ),
         )),
-      ) as _i8.Future<_i6.FlightOfferModel>);
+      ) as _i8.Future<_i6.FlightOffer>);
 
   @override
-  _i8.Future<void> cacheAvailableFlights(
-          _i6.FlightOfferModel? flightOfferModel) =>
+  _i8.Future<void> cacheAvailableFlights(_i6.FlightOffer? flightOfferModel) =>
       (super.noSuchMethod(
         Invocation.method(
           #cacheAvailableFlights,

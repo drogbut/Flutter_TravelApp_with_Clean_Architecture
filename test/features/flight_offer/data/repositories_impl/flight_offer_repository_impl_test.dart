@@ -7,20 +7,19 @@ import 'package:travel_app/core/errors/failure.dart';
 import 'package:travel_app/core/network/network_info.dart';
 import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_local_data_source.dart';
 import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_remote_data_source.dart';
-import 'package:travel_app/features/flight_offer/data/models/aircraft_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/arrival_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/departure_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/flight_offer_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/included_checked_bags_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/itineraries_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/operating_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/price_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/pricing_options_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/segments_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/traveler_pricings_model.dart';
+import 'package:travel_app/features/flight_offer/data/models/aircraft/aircraft.dart';
+import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
+import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
+import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment/fare_details_by_segment.dart';
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart';
+import 'package:travel_app/features/flight_offer/data/models/included_checked_bags/included_checked_bags.dart';
+import 'package:travel_app/features/flight_offer/data/models/itineraries/itineraries.dart';
+import 'package:travel_app/features/flight_offer/data/models/operating/operating.dart';
+import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
+import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
+import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
+import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
 import 'package:travel_app/features/flight_offer/data/repositories_impl/flight_offer_repository_impl.dart';
-import 'package:travel_app/features/flight_offer/domain/entities/flight_offer.dart';
 
 import 'flight_offer_repository_impl_test.mocks.dart';
 
@@ -57,19 +56,19 @@ void main() {
             originLocationCode: 'NSI',
             destinationLocationCode: 'DUS',
             departureDate: '2024-01-02T11:35:00',
-            adults: 'ADULT'))
-        .thenAnswer((_) async => tFlightOfferModel);
+            numberOfPassengers: '1'))
+        .thenAnswer((_) async => flightOffer);
 
     // act
     await repository.getAvailableFlights(
-        "NSI", "DUS", "2024-01-02T11:35:00", "ADULT");
+        "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
     // assert
     verify(mockNetworkInfo.isConnected).called(1);
   });
 
   group("Device is online", () {
-    const FlightOffer tFlightOffer = tFlightOfferModel;
+    const tFlightOffer = flightOffer;
 
     setUp(() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
@@ -82,19 +81,19 @@ void main() {
               originLocationCode: "NSI",
               destinationLocationCode: "DUS",
               departureDate: "2024-01-02T11:35:00",
-              adults: "ADULT"))
-          .thenAnswer((_) async => tFlightOfferModel);
+              numberOfPassengers: "1"))
+          .thenAnswer((_) async => tFlightOffer);
 
       // act
       final result = await repository.getAvailableFlights(
-          "NSI", "DUS", "2024-01-02T11:35:00", "ADULT");
+          "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
       verify(mockRemoteDataSource.getAvailableFlights(
               originLocationCode: "NSI",
               destinationLocationCode: "DUS",
               departureDate: "2024-01-02T11:35:00",
-              adults: "ADULT"))
+              numberOfPassengers: "1"))
           .called(1);
       expect(result, equals(const Right(tFlightOffer)));
     });
@@ -105,21 +104,21 @@ void main() {
               originLocationCode: "NSI",
               destinationLocationCode: "DUS",
               departureDate: "2024-01-02T11:35:00",
-              adults: "ADULT"))
-          .thenAnswer((_) async => tFlightOfferModel);
+              numberOfPassengers: "1"))
+          .thenAnswer((_) async => tFlightOffer);
 
       // act
       await repository.getAvailableFlights(
-          "NSI", "DUS", "2024-01-02T11:35:00", "ADULT");
+          "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
       verify(mockRemoteDataSource.getAvailableFlights(
               originLocationCode: "NSI",
               destinationLocationCode: "DUS",
               departureDate: "2024-01-02T11:35:00",
-              adults: "ADULT"))
+              numberOfPassengers: "1"))
           .called(1);
-      verify(mockLocalDataSource.cacheAvailableFlights(tFlightOfferModel));
+      verify(mockLocalDataSource.cacheAvailableFlights(tFlightOffer));
     });
 
     test(
@@ -130,19 +129,19 @@ void main() {
               originLocationCode: "NSI",
               destinationLocationCode: "DUS",
               departureDate: "2024-01-02T11:35:00",
-              adults: "ADULT"))
+              numberOfPassengers: "1"))
           .thenThrow(ServerException());
 
       // act
       final result = await repository.getAvailableFlights(
-          "NSI", "DUS", "2024-01-02T11:35:00", "ADULT");
+          "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
       verify(mockRemoteDataSource.getAvailableFlights(
               originLocationCode: "NSI",
               destinationLocationCode: "DUS",
               departureDate: "2024-01-02T11:35:00",
-              adults: "ADULT"))
+              numberOfPassengers: "1"))
           .called(1);
       verifyZeroInteractions(mockLocalDataSource);
       expect(result, equals(Left(ServerFailure())));
@@ -150,7 +149,7 @@ void main() {
   });
 
   group("Device is offline", () {
-    const FlightOffer tFlightOffer = tFlightOfferModel;
+    const FlightOffer tFlightOffer = flightOffer;
 
     setUp(() {
       when(mockNetworkInfo.isConnected).thenAnswer((_) async => false);
@@ -161,11 +160,11 @@ void main() {
         () async {
       // arrange
       when(mockLocalDataSource.getLastAvailableFlights())
-          .thenAnswer((_) async => tFlightOfferModel);
+          .thenAnswer((_) async => tFlightOffer);
 
       // act
       final result = await repository.getAvailableFlights(
-          "NSI", "DUS", "2024-01-02T11:35:00", "ADULT");
+          "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
       verifyZeroInteractions(mockRemoteDataSource);
@@ -181,7 +180,7 @@ void main() {
 
       // act
       final result = await repository.getAvailableFlights(
-          "NSI", "DUS", "2024-01-02T11:35:00", "ADULT");
+          "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
       verifyZeroInteractions(mockRemoteDataSource);
@@ -192,7 +191,7 @@ void main() {
 }
 
 /// Create a test data
-const tFlightOfferModel = FlightOfferModel(
+const flightOffer = FlightOffer(
   type: 'flight-offer',
   id: '1',
   source: 'GDS',
@@ -203,37 +202,37 @@ const tFlightOfferModel = FlightOfferModel(
   lastTicketingDateTime: '2023-12-31T23:59:59',
   numberOfBookableSeats: 5,
   itineraries: [
-    ItinerariesModel(duration: 'PT14H15M', segments: [
-      SegmentsModel(
-          departure: DepartureModel(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
-          arrival: ArrivalModel(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
+    Itineraries(duration: 'PT14H15M', segments: [
+      Segments(
+          departure: Departure(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
+          arrival: Arrival(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
           carrierCode: 'PR',
           number: '212',
-          aircraft: AircraftModel(code: '333'),
-          operating: OperatingModel(carrierCode: 'PR'),
+          aircraft: Aircraft(code: '333'),
+          operating: Operating(carrierCode: 'PR'),
           duration: 'PT14H15M',
           id: '1',
           numberOfStops: 0,
           blacklistedInEU: false)
     ])
   ],
-  price: PriceModel(currency: 'Eur', total: '200.0', base: '150.0'),
-  pricingOptions: PricingOptionsModel(
-      fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
+  price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
+  pricingOptions:
+      PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
   travelerPricings: [
-    TravelerPricingsModel(
+    TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',
         travelerType: 'ADLUT',
-        price: PriceModel(currency: 'Eur', total: '200.0', base: '150.0'),
+        price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
         fareDetailsBySegment: [
-          FareDetailsBySegmentModel(
+          FareDetailsBySegment(
               segmentId: '1',
               cabin: 'ECONOMY',
               fareBasis: 'EOBAU',
               classe: 'E',
-              includedCheckedBags: IncludedCheckedBagsModel(quantity: 55))
+              includedCheckedBags: IncludedCheckedBags(quantity: 55))
         ])
   ],
 );

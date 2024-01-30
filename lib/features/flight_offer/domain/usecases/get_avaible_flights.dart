@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:travel_app/core/usecase/usecase.dart';
 
 import '../../../../core/errors/failure.dart';
-import '../entities/flight_offer.dart';
+import '../../../../core/params/usecase.dart';
+import '../../data/models/flight_offer/flight_offer.dart';
 import '../repositories/flight_offer_repository.dart';
 
 /// Flight search: users can search for flights by specifying criteria such as
@@ -17,9 +17,10 @@ class GetAvailableFlights
   Future<Either<Failure, FlightOffer>> call(
       AvailableFlightParams params) async {
     return await repository.getAvailableFlights(
-        params.originLocationCode,
-        params.destinationLocationCode,
-        params.departureDate,
-        params.travelerId);
+      params.departure,
+      params.arrival,
+      params.departureDate,
+      params.numberOfPassengers,
+    );
   }
 }

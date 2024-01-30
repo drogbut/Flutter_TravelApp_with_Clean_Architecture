@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:travel_app/core/errors/exceptions.dart';
-import 'package:travel_app/features/flight_offer/data/models/flight_offer_model.dart';
 
 import '../../../../core/Keys/my_keys.dart';
+import '../models/flight_offer/flight_offer.dart';
 
 abstract class FlightOfferRemoteDataSource {
   Future<String> getAccessToken();
@@ -11,11 +11,11 @@ abstract class FlightOfferRemoteDataSource {
   /// call the https://test.api.amadeus.com/v2 endpoint.
   ///
   /// Throws a [ServerException] for all errors codes.
-  Future<FlightOfferModel> getAvailableFlights({
+  Future<FlightOffer> getAvailableFlights({
     required String? originLocationCode,
     required String? destinationLocationCode,
     required String? departureDate,
-    required String? adults,
+    required String? numberOfPassengers,
   });
 }
 
@@ -52,11 +52,11 @@ class FlightOfferRemoteDataSourceImpl extends FlightOfferRemoteDataSource {
   }
 
   @override
-  Future<FlightOfferModel> getAvailableFlights({
+  Future<FlightOffer> getAvailableFlights({
     required String? originLocationCode,
     required String? destinationLocationCode,
     required String? departureDate,
-    required String? adults,
+    required String? numberOfPassengers,
   }) async {
     final accessToken = await getAccessToken();
 
@@ -67,14 +67,14 @@ class FlightOfferRemoteDataSourceImpl extends FlightOfferRemoteDataSource {
         'originLocationCode': originLocationCode,
         'destinationLocationCode': destinationLocationCode,
         'departureDate': departureDate,
-        'adults': adults,
+        'adults': numberOfPassengers,
       },
     );
 
     if (response.statusCode == 200) {
       debugPrint("Response-data: ${response.data}");
       final Map<String, dynamic> responseData = response.data;
-      final flightOfferModel = FlightOfferModel.fromJson(responseData);
+      final flightOfferModel = FlightOffer.fromJson(responseData);
       return flightOfferModel;
     } else {
       throw ServerException();

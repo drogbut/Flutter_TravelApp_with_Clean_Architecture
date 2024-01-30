@@ -6,18 +6,18 @@ import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travel_app/core/errors/exceptions.dart';
 import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_local_data_source.dart';
-import 'package:travel_app/features/flight_offer/data/models/aircraft_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/arrival_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/departure_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/flight_offer_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/included_checked_bags_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/itineraries_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/operating_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/price_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/pricing_options_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/segments_model.dart';
-import 'package:travel_app/features/flight_offer/data/models/traveler_pricings_model.dart';
+import 'package:travel_app/features/flight_offer/data/models/aircraft/aircraft.dart';
+import 'package:travel_app/features/flight_offer/data/models/arrival/arrival.dart';
+import 'package:travel_app/features/flight_offer/data/models/departure/departure.dart';
+import 'package:travel_app/features/flight_offer/data/models/fare_details_by_segment/fare_details_by_segment.dart';
+import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart';
+import 'package:travel_app/features/flight_offer/data/models/included_checked_bags/included_checked_bags.dart';
+import 'package:travel_app/features/flight_offer/data/models/itineraries/itineraries.dart';
+import 'package:travel_app/features/flight_offer/data/models/operating/operating.dart';
+import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
+import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
+import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
+import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
 
 import '../../../../fixtures/fixtures_reader.dart';
 import 'flight_offer_local_data_source_test.mocks.dart';
@@ -34,8 +34,8 @@ void main() {
   });
 
   group("getLastFlightOffer", () {
-    final tFlightOfferModel = FlightOfferModel.fromJson(
-        json.decode(fixture('flight_offer_cached.json')));
+    final tFlightOffer =
+        FlightOffer.fromJson(json.decode(fixture('flight_offer_cached.json')));
 
     test(
         "Should return a flightOffer from sharedPreferences when there is one in there cache",
@@ -49,7 +49,7 @@ void main() {
 
       // assert
       verify(mockSharedPreferences.getString('CACHED_FLIGHT_OFFER'));
-      expect(result, equals(tFlightOfferModel));
+      expect(result, equals(tFlightOffer));
     });
 
     test("Should throw a cachedException when there is not a cache value", () {
@@ -65,15 +65,15 @@ void main() {
   });
 
   group("cacheNumberTrivia", () {
-    const tFlightOfferModel = flightOfferModel;
-    final jsonToString = json.encode(tFlightOfferModel.toJson());
+    const tFlightOffer = flightOffer;
+    final jsonToString = json.encode(tFlightOffer.toJson());
     test("should call sharedPreferences to cache data", () async {
       // arrange
       when(mockSharedPreferences.setString(cachedFlightOffer, jsonToString))
           .thenAnswer((_) async => true);
 
       // act
-      await dataSource.cacheAvailableFlights(tFlightOfferModel);
+      await dataSource.cacheAvailableFlights(tFlightOffer);
 
       // assert
       verify(mockSharedPreferences.setString(cachedFlightOffer, jsonToString));
@@ -82,7 +82,7 @@ void main() {
 }
 
 /// Create a test data
-const flightOfferModel = FlightOfferModel(
+const flightOffer = FlightOffer(
   type: 'flight-offer',
   id: '1',
   source: 'GDS',
@@ -93,37 +93,37 @@ const flightOfferModel = FlightOfferModel(
   lastTicketingDateTime: '2023-12-31T23:59:59',
   numberOfBookableSeats: 5,
   itineraries: [
-    ItinerariesModel(duration: 'PT14H15M', segments: [
-      SegmentsModel(
-          departure: DepartureModel(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
-          arrival: ArrivalModel(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
+    Itineraries(duration: 'PT14H15M', segments: [
+      Segments(
+          departure: Departure(iataCode: 'NSI', at: '2024-01-02T11:35:00'),
+          arrival: Arrival(iataCode: 'DUS', at: '2024-01-03T11:35:00'),
           carrierCode: 'PR',
           number: '212',
-          aircraft: AircraftModel(code: '333'),
-          operating: OperatingModel(carrierCode: 'PR'),
+          aircraft: Aircraft(code: '333'),
+          operating: Operating(carrierCode: 'PR'),
           duration: 'PT14H15M',
           id: '1',
           numberOfStops: 0,
           blacklistedInEU: false)
     ])
   ],
-  price: PriceModel(currency: 'Eur', total: '200.0', base: '150.0'),
-  pricingOptions: PricingOptionsModel(
-      fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
+  price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
+  pricingOptions:
+      PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
   travelerPricings: [
-    TravelerPricingsModel(
+    TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',
         travelerType: 'ADLUT',
-        price: PriceModel(currency: 'Eur', total: '200.0', base: '150.0'),
+        price: Price(currency: 'Eur', total: '200.0', base: '150.0'),
         fareDetailsBySegment: [
-          FareDetailsBySegmentModel(
+          FareDetailsBySegment(
               segmentId: '1',
               cabin: 'ECONOMY',
               fareBasis: 'EOBAU',
               classe: 'E',
-              includedCheckedBags: IncludedCheckedBagsModel(quantity: 55))
+              includedCheckedBags: IncludedCheckedBags(quantity: 55))
         ])
   ],
 );
