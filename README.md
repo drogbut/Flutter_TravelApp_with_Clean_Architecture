@@ -16,6 +16,11 @@ The aim of this project is to build a new electronic flight platform in terms of
 10. [Contribution](#Contribution)
 
 ## Previews
+<p align="left">
+<img height="450" width="auto" src="assets/images/home_page.png" />
+<img height="450" width="auto" src="assets/images/home_page.png" />
+<img height="450" width="auto" src="assets/images/home_page.png" />
+</p>
 
 ## How to run
 1. Clone this repository
