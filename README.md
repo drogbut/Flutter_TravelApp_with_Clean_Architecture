@@ -17,7 +17,6 @@ The aim of this project is to build a new electronic flight platform in terms of
 
 ## Previews
 
-
 ## How to run
 1. Clone this repository
 2. Fetch packages:</br>
@@ -43,21 +42,7 @@ Then:
 - place the key to this file: *lib/data/data_providers/remote/secrets.dart*
 - set **quotaSaveMode** to ```false``` in *lib/utils/debug_options.dart*
 
-
-# Contributing to TravelApp
-
-Feel free to contribute to this project.
-
-If you find a bug or want a feature, but don't know how to fix/implement it, please fill
-an [issue](...).  
-If you fixed a bug or implemented a new feature, please send a [pull request](...).
-
-### Thanks
-
-1. [Which Flutter Project Structure for your project by Code With ANDREA](https://codewithandrea.com/articles/flutter-project-structure/)
-2. [Flutter App Architecture with Riverpod: An Introduction](https://codewithandrea.com/articles/flutter-app-architecture-riverpod-introduction/)
-
-# New knowledge gained during the project
+## TODO list
 1. **Flutter Project Structure**: The Secret to Maintainable Apps [Reso coder Proposal](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
 2. **How to define Entities**: What kind of data will the Travel App operate with? Why and how do you merge an Entity and a model in Flutter?
 3. **Define the first use-case and test it** get available flights as use-case and using Mockito to make the test Drive development 
@@ -66,3 +51,12 @@ If you fixed a bug or implemented a new feature, please send a [pull request](..
 5. **Network info**: What is the benefit of managing network information separately from the repository?
 6. **Local data source**: How can I display the last cached FlightOffers data when offline?
 7. **Remote Data source**: How to call the API data using oauth2 ?
+
+## Credits
+1. [Which Flutter Project Structure for your project by Code With ANDREA](https://codewithandrea.com/articles/flutter-project-structure/)
+2. [Flutter App Architecture with Riverpod: An Introduction](https://codewithandrea.com/articles/flutter-app-architecture-riverpod-introduction/)
+
+# Contributing to TravelApp
+he app is still in the development process and isn't suitable for contributions yet.
+
+~~If you wish to contribute, file an issue with an appropriate tag or propose a PR. If it is a breaking change, please create an issue first.~~
