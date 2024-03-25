@@ -5,10 +5,10 @@ import 'package:travel_app/features/flight_offer/presentation/bloc/flight_offers
 import 'package:travel_app/features/flight_offer/presentation/widgets/loading_widget.dart';
 
 import '../../../../core/constants/my_constant.dart';
-import '../../../../core/global_widgets/travel_appbar.dart';
 import '../../../../injection_container.dart';
+import '../../../../ui/tr_appbar.dart';
+import '../../../overview/presenter/topping_card/overview_topping_card.dart';
 import '../widgets/display_available_flights_widget.dart';
-import 'input_search_data_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -16,9 +16,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, MyConstants.toolbarHeight),
-          child: TravelAppbar()),
+      appBar: const TrAppbar(),
       body: BlocProvider(
         create: (_) => sl<FlightOffersBloc>(),
         child: const SingleChildScrollView(
@@ -27,7 +25,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                InputSearchDataCard(),
+                OverviewToppingCard(),
                 DisplayAvailableFlights(),
               ],
             ),

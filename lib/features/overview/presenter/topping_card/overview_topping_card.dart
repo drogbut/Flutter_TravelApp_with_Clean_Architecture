@@ -5,16 +5,16 @@ import 'package:intl/intl.dart';
 import '../../../../core/colors/my_colors.dart';
 import '../../../../core/constants/my_constant.dart';
 import '../../../../core/params/usecase.dart';
-import '../bloc/flight_offers_bloc.dart';
+import '../../../flight_offer/presentation/bloc/flight_offers_bloc.dart';
 
-class InputSearchDataCard extends StatefulWidget {
-  const InputSearchDataCard({super.key});
+class OverviewToppingCard extends StatefulWidget {
+  const OverviewToppingCard({super.key});
 
   @override
-  State<InputSearchDataCard> createState() => _InputSearchDataCardState();
+  State<OverviewToppingCard> createState() => _OverviewToppingCardState();
 }
 
-class _InputSearchDataCardState extends State<InputSearchDataCard> {
+class _OverviewToppingCardState extends State<OverviewToppingCard> {
   final TextEditingController fromController = TextEditingController();
   final TextEditingController toController = TextEditingController();
   late String inputFrom = '';
@@ -39,15 +39,18 @@ class _InputSearchDataCardState extends State<InputSearchDataCard> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Flights',
-              style:
-                  textTheme.titleMedium?.copyWith(color: MyColors.background)),
+          ElevatedButton(
+            onPressed: () {},
+            child: Text('Flights',
+                style: textTheme.titleMedium
+                    ?.copyWith(color: MyColors.background)),
+          ),
           const SizedBox(height: MyConstants.paddingLarge),
           TextFormField(
             controller: fromController,
             decoration: customDecoration(
                 prefixIconData: Icons.circle_outlined,
-                hintText: 'Departure - Enter an IATA code',
+                hintText: 'Country, city, or airport',
                 topRight: MyConstants.borderRadiusMedium,
                 topLeft: MyConstants.borderRadiusMedium),
             onChanged: (value) {
@@ -62,7 +65,7 @@ class _InputSearchDataCardState extends State<InputSearchDataCard> {
             focusNode: secondFocusNode,
             decoration: customDecoration(
               prefixIconData: Icons.local_airport,
-              hintText: 'Arrival - Enter an IATA code',
+              hintText: 'Country, city, or airport',
             ),
             onChanged: (value) {
               inputTo = value;
@@ -210,7 +213,6 @@ class _InputSearchDataCardState extends State<InputSearchDataCard> {
         numberOfPassengers: numberOfPassengers,
       ),
     ));
-    // print("(0) -----> Inputdata: departure: $depature, arrival: $arrival, date: $departureDate, numberOfPassengers: $numberOfPassengers,");
   }
 
   @override

@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/core/constants/my_constant.dart';
 
-class TravelAppbar extends StatelessWidget {
-  const TravelAppbar({super.key});
+class TrAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const TrAppbar({super.key});
+
+  @override
+  Size get preferredSize => const Size.fromHeight(MyConstants.toolbarHeight);
 
   @override
   Widget build(BuildContext context) {
