@@ -51,11 +51,12 @@ Then:
 1. **Flutter Project Structure**: The Secret to Maintainable Apps [Reso coder Proposal](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
 2. **How to define Entities**: What kind of data will the Travel App operate with? Why and how do you merge an Entity and a model in Flutter?
 3. **Define the first use-case and test it** get available flights as use-case and using Mockito to make the test Drive development 
-3. **REST-APIs**: How to fetch flight offers from Amadeus API using OAuth2?[Amadeuis authorization](https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262)
-4. **Dependency Inversion**: How do you separate the domain layer (Abstract Repositories) and the Data layer (Repository involves)?
-5. **Network info**: What is the benefit of managing network information separately from the repository?
-6. **Local data source**: How can I display the last cached FlightOffers data when offline?
-7. **Remote Data source**: How to call the API data using oauth2 ?
+4. **REST-APIs**: How to fetch flight offers from Amadeus API using OAuth2?[Amadeuis authorization](https://developers.amadeus.com/self-service/apis-docs/guides/authorization-262)
+5. **Dependency Inversion**: How do you separate the domain layer (Abstract Repositories) and the Data layer (Repository involves)?
+6. **Network info**: What is the benefit of managing network information separately from the repository?
+7. **Local data source**: How can I display the last cached FlightOffers data when offline?
+8. **Remote Data source**: How to call the API data using oauth2 ?
+9. **Reponsive Design**: There is no one rule on what to choose as it always depends on a number of criteria. First of all, I didn't want to use an external package to do this. Also, I wanted to build a Responsive widget that has phone mode by default (mobile-first). Then I also built a ResponsiveBuilder widget so that I could modify the widgets if necessary. Although Responsive affects the whole app, in this context it's realised as a feature, which is why we're putting it in the features directory.  
 
 ## Credits
 1. [Which Flutter Project Structure for your project by Code With ANDREA](https://codewithandrea.com/articles/flutter-project-structure/)
