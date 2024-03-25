@@ -19,10 +19,7 @@ class TrAppbar extends StatelessWidget implements PreferredSizeWidget {
             ?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.favorite),
-          onPressed: () {},
-        ),
+        IconButton(icon: const Icon(Icons.favorite), onPressed: () {}),
         IconButton(
             onPressed: () {},
             icon: const Icon(CupertinoIcons.person_crop_circle_fill)),

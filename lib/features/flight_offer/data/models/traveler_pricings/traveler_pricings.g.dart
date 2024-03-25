@@ -9,9 +9,9 @@ part of 'traveler_pricings.dart';
 _$TravelerPricingsImpl _$$TravelerPricingsImplFromJson(
         Map<String, dynamic> json) =>
     _$TravelerPricingsImpl(
+      travelerType: json['travelerType'] as String? ?? 'ADULT',
       travelerId: json['travelerId'] as String?,
       fareOption: json['fareOption'] as String?,
-      travelerType: json['travelerType'] as String?,
       price: json['price'] == null
           ? null
           : Price.fromJson(json['price'] as Map<String, dynamic>),
@@ -23,9 +23,9 @@ _$TravelerPricingsImpl _$$TravelerPricingsImplFromJson(
 Map<String, dynamic> _$$TravelerPricingsImplToJson(
         _$TravelerPricingsImpl instance) =>
     <String, dynamic>{
+      'travelerType': instance.travelerType,
       'travelerId': instance.travelerId,
       'fareOption': instance.fareOption,
-      'travelerType': instance.travelerType,
       'price': instance.price,
       'fareDetailsBySegment': instance.fareDetailsBySegment,
     };

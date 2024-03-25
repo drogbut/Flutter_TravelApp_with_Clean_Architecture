@@ -8,7 +8,7 @@ part 'itineraries.g.dart';
 @freezed
 class Itineraries with _$Itineraries {
   const factory Itineraries({
-    String? duration,
+    @Default('PTOM') String? duration,
     List<Segments>? segments,
   }) = _Itineraries;
 

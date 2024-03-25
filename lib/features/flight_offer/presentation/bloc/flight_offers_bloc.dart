@@ -6,7 +6,7 @@ import '../../../../core/errors/failure.dart';
 import '../../../../core/params/usecase.dart';
 import '../../../../core/presentation/input_converter.dart';
 import '../../data/models/flight_offer/flight_offer.dart';
-import '../../domain/usecases/get_avaible_flights.dart';
+import '../../domain/usecases/get_flight_offers_search.dart';
 
 part 'flight_offers_event.dart';
 part 'flight_offers_state.dart';
@@ -17,7 +17,7 @@ const String invalidInputFailureMessage =
     'Invalid Input - The number must be a positive integer or zero.';
 
 class FlightOffersBloc extends Bloc<FlightOffersEvent, FlightOffersState> {
-  final GetAvailableFlights getAvailableFlights;
+  final GetFlightOffersSearch getAvailableFlights;
   final InputConverter inputConverter;
 
   FlightOffersBloc({

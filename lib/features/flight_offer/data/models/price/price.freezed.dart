@@ -12,7 +12,7 @@ part of 'price.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Price _$PriceFromJson(Map<String, dynamic> json) {
   return _Price.fromJson(json);
@@ -116,12 +116,13 @@ class __$$PriceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PriceImpl implements _Price {
-  const _$PriceImpl({this.currency, this.total, this.base});
+  const _$PriceImpl({this.currency = 'EUR', this.total, this.base});
 
   factory _$PriceImpl.fromJson(Map<String, dynamic> json) =>
       _$$PriceImplFromJson(json);
 
   @override
+  @JsonKey()
   final String? currency;
   @override
   final String? total;

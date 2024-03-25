@@ -16,20 +16,20 @@ import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
 import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
 import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
 import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
-import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart';
-import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_flights.dart';
+import 'package:travel_app/features/flight_offer/domain/repositories/amadeus_repository.dart';
+import 'package:travel_app/features/flight_offer/domain/usecases/get_flight_offers_search.dart';
 
 import 'get_available_flights_test.mocks.dart';
 
-@GenerateMocks([FlightOfferRepository])
+@GenerateMocks([AmadeusRepository])
 void main() {
-  late GetAvailableFlights getAvailableFlights;
+  late GetFlightOffersSearch getAvailableFlights;
   late MockFlightOfferRepository mockRepository;
 
   group('GetAvailableFlights', () {
     setUp(() {
       mockRepository = MockFlightOfferRepository();
-      getAvailableFlights = GetAvailableFlights(mockRepository);
+      getAvailableFlights = GetFlightOffersSearch(mockRepository);
     });
 
     const params = AvailableFlightParams(
@@ -42,7 +42,7 @@ void main() {
     /// If negative test
     test('should return a ServerFailure when an exception occurs', () async {
       // Arrange
-      when(mockRepository.getAvailableFlights(
+      when(mockRepository.getFlightOffersSearch(
               'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .thenAnswer((_) async => Left(ServerFailure()));
 
@@ -52,7 +52,7 @@ void main() {
       // Assert
       expect(result, isA<Left<Failure, FlightOffer>>());
 
-      verify(mockRepository.getAvailableFlights(
+      verify(mockRepository.getFlightOffersSearch(
               'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .called(1);
       verifyNoMoreInteractions(mockRepository);
@@ -62,18 +62,18 @@ void main() {
     test('should return a FlightOffer when the call is successful', () async {
       // Arrange
       const expectedFlightOffer = flightOffer;
-      when(mockRepository.getAvailableFlights(
+      when(mockRepository.getFlightOffersSearch(
               'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .thenAnswer((_) async => const Right(expectedFlightOffer));
 
       // Act
       final result = await getAvailableFlights(params);
-      final numberOfTravelers = expectedFlightOffer.travelerPricings?.length;
+      final numberOfTravelers = expectedFlightOffer.travelers?.length;
 
       // Assert
       expect(numberOfTravelers, 1);
       expect(result, const Right(expectedFlightOffer));
-      verify(mockRepository.getAvailableFlights(
+      verify(mockRepository.getFlightOffersSearch(
               'NSI', 'DUS', '2024-01-02T11:35:00', '1'))
           .called(1);
       verifyNoMoreInteractions(mockRepository);
@@ -111,7 +111,7 @@ const flightOffer = FlightOffer(
   pricingOptions:
       PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
-  travelerPricings: [
+  travelers: [
     TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',

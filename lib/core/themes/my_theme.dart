@@ -7,7 +7,7 @@ ThemeData lightThemeMode() {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
-    scaffoldBackgroundColor: MyColors.onBackground,
+    //scaffoldBackgroundColor: MyColors.background,
     colorScheme: lightColorScheme,
 
     /// APPBAR THEME
@@ -62,7 +62,7 @@ ThemeData lightThemeMode() {
         if (states.contains(MaterialState.disabled)) {
           return const Color(0xFFFFFFFF);
         }
-        return const Color(0xFFFFFFFF);
+        return MyColors.primary;
       }),
     )),
 
@@ -131,7 +131,7 @@ ThemeData lightThemeMode() {
       }),
     )),
 
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
       ),

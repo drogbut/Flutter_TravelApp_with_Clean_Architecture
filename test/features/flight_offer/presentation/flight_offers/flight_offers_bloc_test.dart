@@ -17,12 +17,12 @@ import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
 import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
 import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
 import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
-import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_flights.dart';
+import 'package:travel_app/features/flight_offer/domain/usecases/get_flight_offers_search.dart';
 import 'package:travel_app/features/flight_offer/presentation/bloc/flight_offers_bloc.dart';
 
 import 'flight_offers_bloc_test.mocks.dart';
 
-@GenerateMocks([GetAvailableFlights, InputConverter])
+@GenerateMocks([GetFlightOffersSearch, InputConverter])
 void main() {
   late FlightOffersBloc bloc;
   late MockGetAvailableFlights mockGetAvailableFlights;
@@ -218,7 +218,7 @@ const flightOffer = FlightOffer(
   pricingOptions:
       PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
-  travelerPricings: [
+  travelers: [
     TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',

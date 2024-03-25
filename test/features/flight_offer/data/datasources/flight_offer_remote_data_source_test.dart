@@ -218,7 +218,7 @@ const tFlightOffer = FlightOffer(
   pricingOptions:
       PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
-  travelerPricings: [
+  travelers: [
     TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',

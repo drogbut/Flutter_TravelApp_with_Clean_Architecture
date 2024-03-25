@@ -11,20 +11,22 @@ part 'flight_offer.g.dart';
 @freezed
 class FlightOffer with _$FlightOffer {
   const factory FlightOffer({
+    @Default(false) bool? oneWay,
+    @Default(0) int? numberOfBookableSeats,
+    Price? price,
+    @Default(<TravelerPricings>[])
+    @JsonKey(name: 'travelerPricings')
+    List<TravelerPricings>? travelers,
+    required List<Itineraries>? itineraries,
     String? type,
     String? id,
     String? source,
     bool? instantTicketingRequired,
     bool? nonHomogeneous,
-    bool? oneWay,
     String? lastTicketingDate,
     String? lastTicketingDateTime,
-    int? numberOfBookableSeats,
-    List<Itineraries>? itineraries,
-    Price? price,
     PricingOptions? pricingOptions,
     List<String?>? validatingAirlineCodes,
-    List<TravelerPricings>? travelerPricings,
   }) = _FlightOffer;
 
   factory FlightOffer.fromJson(Map<String, Object?> json) =>

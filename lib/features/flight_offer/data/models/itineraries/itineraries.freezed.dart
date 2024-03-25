@@ -12,7 +12,7 @@ part of 'itineraries.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Itineraries _$ItinerariesFromJson(Map<String, dynamic> json) {
   return _Itineraries.fromJson(json);
@@ -108,13 +108,15 @@ class __$$ItinerariesImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ItinerariesImpl implements _Itineraries {
-  const _$ItinerariesImpl({this.duration, final List<Segments>? segments})
+  const _$ItinerariesImpl(
+      {this.duration = 'PTOM', final List<Segments>? segments})
       : _segments = segments;
 
   factory _$ItinerariesImpl.fromJson(Map<String, dynamic> json) =>
       _$$ItinerariesImplFromJson(json);
 
   @override
+  @JsonKey()
   final String? duration;
   final List<Segments>? _segments;
   @override

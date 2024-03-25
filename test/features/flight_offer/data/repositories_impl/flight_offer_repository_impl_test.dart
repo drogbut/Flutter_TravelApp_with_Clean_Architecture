@@ -19,18 +19,18 @@ import 'package:travel_app/features/flight_offer/data/models/price/price.dart';
 import 'package:travel_app/features/flight_offer/data/models/pricing_options/pricing_options.dart';
 import 'package:travel_app/features/flight_offer/data/models/segments/segments.dart';
 import 'package:travel_app/features/flight_offer/data/models/traveler_pricings/traveler_pricings.dart';
-import 'package:travel_app/features/flight_offer/data/repositories_impl/flight_offer_repository_impl.dart';
+import 'package:travel_app/features/flight_offer/data/repositories_impl/amadeus_repository_impl.dart';
 
 import 'flight_offer_repository_impl_test.mocks.dart';
 
 @GenerateMocks([
-  FlightOfferRepositoryImpl,
+  AmadeusRepositoryImpl,
   FlightOfferRemoteDataSource,
   FlightOfferLocalDataSource,
   NetworkInfo
 ])
 void main() {
-  late FlightOfferRepositoryImpl repository;
+  late AmadeusRepositoryImpl repository;
   late FlightOfferRemoteDataSource mockRemoteDataSource;
   late FlightOfferLocalDataSource mockLocalDataSource;
   late NetworkInfo mockNetworkInfo;
@@ -40,7 +40,7 @@ void main() {
     mockLocalDataSource = MockFlightOfferLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
 
-    repository = FlightOfferRepositoryImpl(
+    repository = AmadeusRepositoryImpl(
       remoteDataSource: mockRemoteDataSource,
       localDataSource: mockLocalDataSource,
       networkInfo: mockNetworkInfo,
@@ -60,7 +60,7 @@ void main() {
         .thenAnswer((_) async => flightOffer);
 
     // act
-    await repository.getAvailableFlights(
+    await repository.getFlightOffersSearch(
         "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
     // assert
@@ -85,7 +85,7 @@ void main() {
           .thenAnswer((_) async => tFlightOffer);
 
       // act
-      final result = await repository.getAvailableFlights(
+      final result = await repository.getFlightOffersSearch(
           "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
@@ -108,7 +108,7 @@ void main() {
           .thenAnswer((_) async => tFlightOffer);
 
       // act
-      await repository.getAvailableFlights(
+      await repository.getFlightOffersSearch(
           "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
@@ -133,7 +133,7 @@ void main() {
           .thenThrow(ServerException());
 
       // act
-      final result = await repository.getAvailableFlights(
+      final result = await repository.getFlightOffersSearch(
           "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
@@ -163,7 +163,7 @@ void main() {
           .thenAnswer((_) async => tFlightOffer);
 
       // act
-      final result = await repository.getAvailableFlights(
+      final result = await repository.getFlightOffersSearch(
           "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
@@ -179,7 +179,7 @@ void main() {
           .thenThrow(CacheException());
 
       // act
-      final result = await repository.getAvailableFlights(
+      final result = await repository.getFlightOffersSearch(
           "NSI", "DUS", "2024-01-02T11:35:00", "1");
 
       // assert
@@ -220,7 +220,7 @@ const flightOffer = FlightOffer(
   pricingOptions:
       PricingOptions(fareType: ['PUBLISHED'], includedCheckedBagsOnly: true),
   validatingAirlineCodes: ['PR'],
-  travelerPricings: [
+  travelers: [
     TravelerPricings(
         travelerId: '1',
         fareOption: 'STANDARD',

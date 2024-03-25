@@ -9,6 +9,8 @@ extension ContextExtension on BuildContext {
   double get screenWidth => mediaQuerySize.width;
   double get screenHeight => mediaQuerySize.height;
 
+  bool get isPhone => deviceType == DeviceScreenType.mobile;
+
   DeviceScreenType get deviceType {
     double deviceWidth = mediaQuerySize.shortestSide;
 

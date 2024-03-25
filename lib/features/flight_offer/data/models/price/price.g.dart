@@ -7,7 +7,7 @@ part of 'price.dart';
 // **************************************************************************
 
 _$PriceImpl _$$PriceImplFromJson(Map<String, dynamic> json) => _$PriceImpl(
-      currency: json['currency'] as String?,
+      currency: json['currency'] as String? ?? 'EUR',
       total: json['total'] as String?,
       base: json['base'] as String?,
     );

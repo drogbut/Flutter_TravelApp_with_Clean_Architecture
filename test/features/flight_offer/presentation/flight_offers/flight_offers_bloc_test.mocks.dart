@@ -12,9 +12,9 @@ import 'package:travel_app/core/params/usecase.dart' as _i8;
 import 'package:travel_app/core/presentation/input_converter.dart' as _i9;
 import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart'
     as _i7;
-import 'package:travel_app/features/flight_offer/domain/repositories/flight_offer_repository.dart'
+import 'package:travel_app/features/flight_offer/domain/repositories/amadeus_repository.dart'
     as _i2;
-import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_flights.dart'
+import 'package:travel_app/features/flight_offer/domain/usecases/get_flight_offers_search.dart'
     as _i4;
 
 // ignore_for_file: type=lint
@@ -31,7 +31,7 @@ import 'package:travel_app/features/flight_offer/domain/usecases/get_avaible_fli
 // ignore_for_file: subtype_of_sealed_class
 
 class _FakeFlightOfferRepository_0 extends _i1.SmartFake
-    implements _i2.FlightOfferRepository {
+    implements _i2.AmadeusRepository {
   _FakeFlightOfferRepository_0(
     Object parent,
     Invocation parentInvocation,
@@ -55,19 +55,19 @@ class _FakeEither_1<L, R> extends _i1.SmartFake implements _i3.Either<L, R> {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetAvailableFlights extends _i1.Mock
-    implements _i4.GetAvailableFlights {
+    implements _i4.GetFlightOffersSearch {
   MockGetAvailableFlights() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.FlightOfferRepository get repository => (super.noSuchMethod(
+  _i2.AmadeusRepository get repository => (super.noSuchMethod(
         Invocation.getter(#repository),
         returnValue: _FakeFlightOfferRepository_0(
           this,
           Invocation.getter(#repository),
         ),
-      ) as _i2.FlightOfferRepository);
+      ) as _i2.AmadeusRepository);
 
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.FlightOffer>> call(

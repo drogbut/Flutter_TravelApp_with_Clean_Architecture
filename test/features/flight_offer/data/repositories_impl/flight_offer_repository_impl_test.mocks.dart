@@ -16,7 +16,7 @@ import 'package:travel_app/features/flight_offer/data/data_sources/flight_offer_
     as _i2;
 import 'package:travel_app/features/flight_offer/data/models/flight_offer/flight_offer.dart'
     as _i6;
-import 'package:travel_app/features/flight_offer/data/repositories_impl/flight_offer_repository_impl.dart'
+import 'package:travel_app/features/flight_offer/data/repositories_impl/amadeus_repository_impl.dart'
     as _i7;
 
 // ignore_for_file: type=lint
@@ -88,7 +88,7 @@ class _FakeFlightOffer_4 extends _i1.SmartFake implements _i6.FlightOffer {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockFlightOfferRepositoryImpl extends _i1.Mock
-    implements _i7.FlightOfferRepositoryImpl {
+    implements _i7.AmadeusRepositoryImpl {
   MockFlightOfferRepositoryImpl() {
     _i1.throwOnMissingStub(this);
   }
@@ -121,7 +121,7 @@ class MockFlightOfferRepositoryImpl extends _i1.Mock
       ) as _i4.NetworkInfo);
 
   @override
-  _i8.Future<_i5.Either<_i9.Failure, _i6.FlightOffer>> getAvailableFlights(
+  _i8.Future<_i5.Either<_i9.Failure, _i6.FlightOffer>> getFlightOffersSearch(
     String? originLocationCode,
     String? destinationLocationCode,
     String? departureDate,

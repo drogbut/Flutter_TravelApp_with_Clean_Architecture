@@ -9,9 +9,9 @@ part 'traveler_pricings.g.dart';
 @freezed
 class TravelerPricings with _$TravelerPricings {
   const factory TravelerPricings({
+    @Default('ADULT') String? travelerType,
     String? travelerId,
     String? fareOption,
-    String? travelerType,
     Price? price,
     List<FareDetailsBySegment>? fareDetailsBySegment,
   }) = _TravelerPricings;

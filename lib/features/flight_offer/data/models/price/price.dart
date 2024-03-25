@@ -6,7 +6,7 @@ part 'price.g.dart';
 @freezed
 class Price with _$Price {
   const factory Price({
-    String? currency,
+    @Default('EUR') String? currency,
     String? total,
     String? base,
   }) = _Price;
